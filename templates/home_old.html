@@ -1,0 +1,357 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}TechMart - Simple Ecommerce Store{% endblock %}
+
+{% block content %}
+<div class="hero-section">
+    <div class="container text-center">
+        <h1 class="display-4 fw-bold">Welcome to TechMart</h1>
+        <p class="lead">Your simple online shopping destination</p>
+        <a href="{% url 'products:product_list' %}" class="btn btn-light btn-lg mt-3">
+            <i class="fas fa-shopping-bag"></i> Shop Now
+        </a>
+    </div>
+</div>
+
+<div class="container my-5">
+    {% if featured_products %}
+    <div class="row">
+        <div class="col-12 mb-4">
+            <h2 class="text-center">Featured Products</h2>
+        </div>
+    </div>
+    
+    <div class="row">
+        {% for product in featured_products %}
+        <div class="col-md-4 mb-4">
+            <div class="card product-card h-100 shadow-sm">
+                {% if product.main_image %}
+                <img src="{{ product.main_image.url }}" class="card-img-top" alt="{{ product.name }}" style="height: 250px; object-fit: cover;">
+                {% else %}
+                <div class="card-img-top d-flex align-items-center justify-content-center bg-light" style="height: 250px;">
+                    <i class="fas fa-image fa-3x text-muted"></i>
+                </div>
+                {% endif %}
+                
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <p class="card-text flex-grow-1">{{ product.short_description|truncatewords:15 }}</p>
+                    <div class="mt-auto">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="h5 text-primary mb-0">${{ product.price }}</span>
+                            <div class="btn-group">
+                                <a href="{% url 'products:product_detail' product.slug %}" class="btn btn-outline-primary btn-sm">
+                                    View
+                                </a>
+                                {% if user.is_authenticated %}
+                                <button class="btn btn-primary btn-sm add-to-cart-btn" data-product-id="{{ product.id }}">
+                                    <i class="fas fa-cart-plus"></i>
+                                </button>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="row">
+        <div class="col-12 text-center">
+            <h2>No products available yet</h2>
+            <p class="text-muted">Check back soon or contact the admin to add products.</p>
+            {% if user.is_staff %}
+            <a href="{% url 'admin:index' %}" class="btn btn-primary">
+                <i class="fas fa-plus"></i> Add Products
+            </a>
+            {% endif %}
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+<div class="container-fluid bg-light py-5">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-4 mb-4">
+                <div class="h2 text-primary mb-3">
+                    <i class="fas fa-shopping-cart"></i>
+                </div>
+                <h4>Easy Shopping</h4>
+                <p>Browse and add products to your cart with ease. No complicated checkout process.</p>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="h2 text-primary mb-3">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <h4>Wishlist</h4>
+                <p>Save products you love for later. Create your perfect wishlist collection.</p>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="h2 text-primary mb-3">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h4>Secure Authentication</h4>
+                <p>Two-factor authentication with Microsoft Authenticator for ultimate security.</p>
+            </div>
+        </div>
+    </div>
+</div>
+    </div>
+</section>
+
+<!-- Store Stats -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-3 mb-4">
+                <div class="h2 text-primary fw-bold">50K+</div>
+                <p class="text-muted">Happy customers worldwide</p>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="h2 text-success fw-bold">1M+</div>
+                <p class="text-muted">API calls processed monthly</p>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="h2 text-info fw-bold">24/7</div>
+                <p class="text-muted">Customer support & uptime</p>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="h2 text-warning fw-bold">99.9%</div>
+                <p class="text-muted">Service reliability guarantee</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Products -->
+{% if featured_products %}
+<section class="py-5">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-lg-8 mx-auto text-center">
+                <h2 class="display-5 fw-bold">Featured Products</h2>
+                <p class="lead text-muted">Discover our innovative solutions for water purification and environmental monitoring</p>
+            </div>
+        </div>
+        
+        <div class="row">
+            {% for product in featured_products %}
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card product-card h-100 shadow-sm">
+                    {% if product.main_image %}
+                        <img src="{{ product.main_image.url }}" class="card-img-top" alt="{{ product.name }}" style="height: 250px; object-fit: cover;">
+                    {% else %}
+                        <img src="https://via.placeholder.com/300x250/007bff/ffffff?text={{ product.name|truncatechars:10 }}" 
+                             class="card-img-top" alt="{{ product.name }}">
+                    {% endif %}
+                    
+                    <div class="card-body d-flex flex-column">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <span class="environmental-badge">
+                                {{ product.get_product_type_display }}
+                            </span>
+                            {% if product.get_discount_percentage %}
+                                <span class="badge bg-danger">{{ product.get_discount_percentage }}% OFF</span>
+                            {% endif %}
+                        </div>
+                        
+                        <h5 class="card-title">{{ product.name }}</h5>
+                        <p class="card-text text-muted flex-grow-1">{{ product.short_description|truncatechars:100 }}</p>
+                        
+                        <div class="mt-auto">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <div class="price">
+                                    {% if product.compare_at_price %}
+                                        <span class="text-muted text-decoration-line-through">${{ product.compare_at_price }}</span>
+                                    {% endif %}
+                                    <span class="h5 text-primary mb-0">${{ product.price }}</span>
+                                </div>
+                                
+                                {% if not product.is_in_stock %}
+                                    <span class="badge bg-warning">Out of Stock</span>
+                                {% elif product.is_low_stock %}
+                                    <span class="badge bg-warning">Low Stock</span>
+                                {% endif %}
+                            </div>
+                            
+                            <a href="{{ product.get_absolute_url }}" class="btn btn-primary w-100">
+                                <i class="fas fa-eye"></i> View Details
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <div class="text-center">
+            <a href="{% url 'products:product_list' %}" class="btn btn-outline-primary btn-lg">
+                View All Products <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- Product Categories -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-lg-8 mx-auto text-center">
+                <h2 class="display-5 fw-bold">Shop by Category</h2>
+                <p class="lead text-muted">Discover premium products across electronics, fashion, home goods, and developer services</p>
+            </div>
+        </div>
+        
+        <div class="row">
+            <!-- Electronics -->
+            <div class="col-lg-6 col-xl-3 mb-4">
+                <div class="card h-100 shadow text-center">
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <i class="fas fa-mobile-alt fa-3x text-primary"></i>
+                        </div>
+                        <h5 class="card-title">Electronics</h5>
+                        <p class="card-text text-muted">Latest smartphones, laptops, and tech accessories from top brands</p>
+                        <a href="{% url 'products:category_products' 'electronics' %}" class="btn btn-primary">Shop Electronics</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fashion -->
+            <div class="col-lg-6 col-xl-3 mb-4">
+                <div class="card h-100 shadow text-center">
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <i class="fas fa-tshirt fa-3x text-success"></i>
+                        </div>
+                        <h5 class="card-title">Fashion & Clothing</h5>
+                        <p class="card-text text-muted">Trendy clothing, shoes, and accessories for every style</p>
+                        <a href="{% url 'products:category_products' 'fashion-clothing' %}" class="btn btn-success">Shop Fashion</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Home & Garden -->
+            <div class="col-lg-6 col-xl-3 mb-4">
+                <div class="card h-100 shadow text-center">
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <i class="fas fa-home fa-3x text-info"></i>
+                        </div>
+                        <h5 class="card-title">Home & Garden</h5>
+                        <p class="card-text text-muted">Home decor, furniture, kitchen appliances, and garden tools</p>
+                        <a href="{% url 'products:category_products' 'home-garden' %}" class="btn btn-info">Shop Home</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- API Services -->
+            <div class="col-lg-6 col-xl-3 mb-4">
+                <div class="card h-100 shadow text-center">
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <i class="fas fa-code fa-3x text-warning"></i>
+                        </div>
+                        <h5 class="card-title">API Services</h5>
+                        <p class="card-text text-muted">Developer API access plans with token management and documentation</p>
+                        <a href="{% url 'products:category_products' 'api-services' %}" class="btn btn-warning">View APIs</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Why Choose TechMart -->
+<section class="py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 mb-4">
+                <h2 class="display-5 fw-bold">Why Choose TechMart?</h2>
+                <p class="lead">
+                    Experience premium shopping with exceptional service, cutting-edge API technology, 
+                    and unmatched customer satisfaction.
+                </p>
+                <div class="row mt-4">
+                    <div class="col-sm-6 mb-3">
+                        <div class="d-flex align-items-center">
+                            <div class="bg-success rounded-circle p-2 me-3">
+                                <i class="fas fa-shipping-fast text-white"></i>
+                            </div>
+                            <div>
+                                <h6 class="mb-0">Fast Shipping</h6>
+                                <small class="text-muted">Free delivery on orders over $50</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 mb-3">
+                        <div class="d-flex align-items-center">
+                            <div class="bg-info rounded-circle p-2 me-3">
+                                <i class="fas fa-shield-alt text-white"></i>
+                            </div>
+                            <div>
+                                <h6 class="mb-0">Secure Shopping</h6>
+                                <small class="text-muted">SSL encrypted & secure payments</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 mb-3">
+                        <div class="d-flex align-items-center">
+                            <div class="bg-primary rounded-circle p-2 me-3">
+                                <i class="fas fa-code text-white"></i>
+                            </div>
+                            <div>
+                                <h6 class="mb-0">Developer APIs</h6>
+                                <small class="text-muted">RESTful APIs with full documentation</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 mb-3">
+                        <div class="d-flex align-items-center">
+                            <div class="bg-warning rounded-circle p-2 me-3">
+                                <i class="fas fa-headset text-white"></i>
+                            </div>
+                            <div>
+                                <h6 class="mb-0">24/7 Support</h6>
+                                <small class="text-muted">Always here to help you succeed</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <img src="https://via.placeholder.com/600x400/6366f1/ffffff?text=Premium+Service" 
+                     alt="Premium Service" class="img-fluid rounded shadow">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="py-5 bg-primary text-white">
+    <div class="container text-center">
+        <h2 class="display-5 fw-bold mb-4">Ready to Start Shopping?</h2>
+        <p class="lead mb-4">
+            Join thousands of satisfied customers who trust TechMart for premium products, 
+            competitive prices, and exceptional service.
+        </p>
+        <div class="d-flex justify-content-center gap-3 flex-wrap">
+            {% if not user.is_authenticated %}
+                <a href="{% url 'account_signup' %}" class="btn btn-light btn-lg">
+                    <i class="fas fa-user-plus"></i> Create Account
+                </a>
+            {% endif %}
+            <a href="{% url 'products:product_list' %}" class="btn btn-outline-light btn-lg">
+                <i class="fas fa-shopping-cart"></i> Shop Now
+            </a>
+            <a href="{% url 'products:category_products' 'api-services' %}" class="btn btn-warning btn-lg">
+                <i class="fas fa-code"></i> Explore APIs
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}

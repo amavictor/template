@@ -1,0 +1,323 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Checkout - TechMart{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    {% if not cart_items %}
+    <!-- Empty cart -->
+    <div class="row">
+        <div class="col-12">
+            <div class="alert alert-warning text-center">
+                <h4><i class="fas fa-exclamation-triangle"></i> Cart is Empty</h4>
+                <p>Add some products to your cart before checking out.</p>
+                <a href="{% url 'products:product_list' %}" class="btn btn-primary">
+                    <i class="fas fa-shopping-bag"></i> Continue Shopping
+                </a>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    
+    <div class="row">
+        <div class="col-12">
+            <h1 class="mb-4">
+                <i class="fas fa-credit-card"></i> Checkout
+            </h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Order Summary -->
+        <div class="col-lg-5 order-lg-2 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Order Summary</h5>
+                </div>
+                <div class="card-body">
+                    <!-- Order Items -->
+                    {% for item in cart_items %}
+                    <div class="d-flex justify-content-between mb-3">
+                        <div class="flex-grow-1">
+                            <h6 class="mb-1">{{ item.product.name }}</h6>
+                            <small class="text-muted">Quantity: {{ item.quantity }}</small>
+                        </div>
+                        <div class="text-end">
+                            <span class="fw-bold">${{ item.get_total_price }}</span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    
+                    <hr>
+                    
+                    <!-- Order Totals -->
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>Subtotal:</span>
+                        <span>${{ subtotal }}</span>
+                    </div>
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>Tax:</span>
+                        <span>${{ tax_amount }}</span>
+                    </div>
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>Shipping:</span>
+                        <span class="text-success">
+                            {% if shipping_amount > 0 %}
+                                ${{ shipping_amount }}
+                            {% else %}
+                                Free
+                            {% endif %}
+                        </span>
+                    </div>
+                    <hr>
+                    <div class="d-flex justify-content-between fw-bold h5">
+                        <span>Total:</span>
+                        <span class="text-primary">${{ total_amount }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Payment Form -->
+        <div class="col-lg-7 order-lg-1">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Payment Information</h5>
+                </div>
+                <div class="card-body">
+                    <form id="payment-form">
+                        {% csrf_token %}
+                        
+                        <!-- Billing Information -->
+                        <div class="mb-4">
+                            <h6>Billing Information</h6>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="first-name" class="form-label">First Name *</label>
+                                    <input type="text" class="form-control" id="first-name" name="first_name" 
+                                           value="{{ user.first_name }}" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="last-name" class="form-label">Last Name *</label>
+                                    <input type="text" class="form-control" id="last-name" name="last_name" 
+                                           value="{{ user.last_name }}" required>
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <label for="email" class="form-label">Email *</label>
+                                    <input type="email" class="form-control" id="email" name="email" 
+                                           value="{{ user.email }}" required>
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <label for="phone" class="form-label">Phone</label>
+                                    <input type="tel" class="form-control" id="phone" name="phone">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Stripe Elements will be inserted here -->
+                        <div class="mb-4">
+                            <h6>Payment Details</h6>
+                            <div id="payment-element" class="mb-3">
+                                <!-- Stripe Elements will create form elements here -->
+                            </div>
+                            <div id="payment-errors" role="alert" class="alert alert-danger d-none"></div>
+                        </div>
+                        
+                        <!-- Submit Button -->
+                        <div class="d-grid">
+                            <button type="submit" id="submit-button" class="btn btn-primary btn-lg">
+                                <div class="spinner-border spinner-border-sm me-2 d-none" id="payment-spinner"></div>
+                                <span id="button-text">
+                                    <i class="fas fa-lock"></i> Complete Payment - ${{ total_amount }}
+                                </span>
+                            </button>
+                        </div>
+                        
+                        <div class="text-center mt-3">
+                            <small class="text-muted">
+                                <i class="fas fa-shield-alt"></i> 
+                                Your payment information is secure and encrypted.
+                            </small>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- Back to Cart -->
+            <div class="mt-3">
+                <a href="{% url 'cart:cart_detail' %}" class="btn btn-outline-secondary">
+                    <i class="fas fa-arrow-left"></i> Back to Cart
+                </a>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block extra_js %}
+{% if cart_items %}
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize Stripe
+    const stripe = Stripe('{{ stripe_publishable_key }}');
+    let elements;
+    let paymentElement;
+    let clientSecret = '';
+
+    // Initialize Stripe Elements
+    async function initialize() {
+        try {
+            // Create payment intent
+            const response = await fetch('{% url "orders:create_payment_intent" %}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}'
+                }
+            });
+            
+            const data = await response.json();
+            if (!response.ok) {
+                throw new Error(data.error || 'Failed to create payment intent');
+            }
+            
+            clientSecret = data.client_secret;
+            
+            // Create Stripe Elements
+            elements = stripe.elements({
+                clientSecret: clientSecret,
+                appearance: {
+                    theme: 'stripe',
+                    variables: {
+                        colorPrimary: '#0066cc'
+                    }
+                }
+            });
+            
+            // Create payment element
+            paymentElement = elements.create('payment');
+            paymentElement.mount('#payment-element');
+            
+        } catch (error) {
+            showError(error.message);
+        }
+    }
+
+    // Handle form submission
+    const form = document.getElementById('payment-form');
+    form.addEventListener('submit', async function(event) {
+        event.preventDefault();
+        
+        if (!stripe || !elements) {
+            showError('Stripe has not loaded properly. Please refresh the page.');
+            return;
+        }
+        
+        setLoading(true);
+        
+        try {
+            // Get billing details from form
+            const billingDetails = {
+                name: document.getElementById('first-name').value + ' ' + document.getElementById('last-name').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value
+            };
+            
+            // Confirm payment with Stripe
+            const {error, paymentIntent} = await stripe.confirmPayment({
+                elements,
+                confirmParams: {
+                    return_url: window.location.origin + '/orders/processing/',
+                    payment_method_data: {
+                        billing_details: billingDetails
+                    }
+                },
+                redirect: 'if_required'
+            });
+            
+            if (error) {
+                showError(error.message);
+                setLoading(false);
+            } else if (paymentIntent && paymentIntent.status === 'succeeded') {
+                // Payment successful, process the order
+                await processOrder(paymentIntent.id, billingDetails);
+            } else {
+                showError('Payment could not be processed. Please try again.');
+                setLoading(false);
+            }
+            
+        } catch (err) {
+            showError('An error occurred: ' + err.message);
+            setLoading(false);
+        }
+    });
+    
+    // Process order after successful payment
+    async function processOrder(paymentIntentId, billingDetails) {
+        try {
+            const response = await fetch('{% url "orders:process_payment" %}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}'
+                },
+                body: JSON.stringify({
+                    payment_intent_id: paymentIntentId,
+                    billing_details: billingDetails
+                })
+            });
+            
+            const data = await response.json();
+            
+            if (response.ok && data.success) {
+                // Redirect to confirmation page
+                window.location.href = data.redirect_url;
+            } else {
+                showError(data.error || 'Failed to process order');
+                setLoading(false);
+            }
+            
+        } catch (error) {
+            showError('Failed to process order: ' + error.message);
+            setLoading(false);
+        }
+    }
+    
+    // Show error messages
+    function showError(message) {
+        const errorDiv = document.getElementById('payment-errors');
+        errorDiv.textContent = message;
+        errorDiv.classList.remove('d-none');
+        
+        // Auto-hide after 5 seconds
+        setTimeout(() => {
+            errorDiv.classList.add('d-none');
+        }, 5000);
+    }
+    
+    // Set loading state
+    function setLoading(loading) {
+        const button = document.getElementById('submit-button');
+        const buttonText = document.getElementById('button-text');
+        const spinner = document.getElementById('payment-spinner');
+        
+        if (loading) {
+            button.disabled = true;
+            buttonText.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+            spinner.classList.remove('d-none');
+        } else {
+            button.disabled = false;
+            buttonText.innerHTML = '<i class="fas fa-lock"></i> Complete Payment - ${{ total_amount }}';
+            spinner.classList.add('d-none');
+        }
+    }
+    
+    // Initialize when page loads
+    initialize();
+});
+</script>
+{% endif %}
+{% endblock %}

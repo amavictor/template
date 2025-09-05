@@ -1,0 +1,1623 @@
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 12068
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 2220
+/Users/victorama/sprint-2-ecommerce/bluewave_ecommerce/urls.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/victorama/sprint-2-ecommerce/products/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/victorama/sprint-2-ecommerce/products/models.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 27768
+Internal Server Error: /products/environmental-data-professional/
+Traceback (most recent call last):
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/response.py", line 90, in rendered_content
+    template = self.resolve_template(self.template_name)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/response.py", line 72, in resolve_template
+    return select_template(template, using=self.using)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/loader.py", line 47, in select_template
+    raise TemplateDoesNotExist(", ".join(template_name_list), chain=chain)
+django.template.exceptions.TemplateDoesNotExist: products/product_detail.html
+"GET /products/environmental-data-professional/ HTTP/1.1" 500 89700
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3886
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Not Found: /api/schema/swagger-ui/
+"GET /api/schema/swagger-ui/ HTTP/1.1" 404 4623
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3775
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 27416
+"GET /products/category/electronics/ HTTP/1.1" 200 26364
+"GET /products/category/home-garden/ HTTP/1.1" 200 18910
+"GET /products/category/api-services/ HTTP/1.1" 200 29173
+"GET /products/ HTTP/1.1" 200 47664
+Internal Server Error: /accounts/login/
+Traceback (most recent call last):
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/defaulttags.py", line 327, in render
+    return nodelist.render(context)
+           ~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/defaulttags.py", line 243, in render
+    nodelist.append(node.render_annotated(context))
+                    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/defaulttags.py", line 327, in render
+    return nodelist.render(context)
+           ~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/library.py", line 321, in render
+    output = self.func(*resolved_args, **resolved_kwargs)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/allauth/socialaccount/templatetags/socialaccount.py", line 21, in provider_login_url
+    provider = adapter.get_provider(request, provider)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/allauth/socialaccount/adapter.py", line 212, in get_provider
+    app = self.get_app(request, provider=provider, client_id=client_id)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/allauth/socialaccount/adapter.py", line 299, in get_app
+    raise MultipleObjectsReturned
+django.core.exceptions.MultipleObjectsReturned
+"GET /accounts/login/ HTTP/1.1" 500 209148
+Watching for file changes with StatReloader
+Internal Server Error: /
+Traceback (most recent call last):
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/defaulttags.py", line 327, in render
+    return nodelist.render(context)
+           ~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/urls/base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/urls/resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'account_login' not found. 'account_login' is not a valid view function or pattern name.
+"GET / HTTP/1.1" 500 160557
+"GET /admin/ HTTP/1.1" 302 0
+Internal Server Error: /admin/login/
+Traceback (most recent call last):
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/contrib/admin/sites.py", line 430, in login
+    **self.each_context(request),
+      ~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/contrib/admin/sites.py", line 343, in each_context
+    "available_apps": self.get_app_list(request),
+                      ~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/contrib/admin/sites.py", line 546, in get_app_list
+    app_dict = self._build_app_dict(request, app_label)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/contrib/admin/sites.py", line 488, in _build_app_dict
+    has_module_perms = model_admin.has_module_permission(request)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/contrib/admin/options.py", line 641, in has_module_permission
+    return request.user.has_module_perms(self.opts.app_label)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/contrib/auth/models.py", line 620, in has_module_perms
+    return _user_has_module_perms(self, module)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/contrib/auth/models.py", line 293, in _user_has_module_perms
+    for backend in auth.get_backends():
+                   ~~~~~~~~~~~~~~~~~^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/contrib/auth/__init__.py", line 40, in get_backends
+    return _get_backends(return_tuples=False)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/contrib/auth/__init__.py", line 29, in _get_backends
+    backend = load_backend(backend_path)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/contrib/auth/__init__.py", line 23, in load_backend
+    return import_string(path)()
+           ~~~~~~~~~~~~~^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/utils/module_loading.py", line 30, in import_string
+    return cached_import(module_path, class_name)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/utils/module_loading.py", line 15, in cached_import
+    module = import_module(module_path)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/importlib/__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 1026, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/allauth/account/auth_backends.py", line 10, in <module>
+    from .utils import filter_users_by_email, filter_users_by_username
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/allauth/account/utils.py", line 12, in <module>
+    from allauth.account.internal import flows
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/allauth/account/internal/__init__.py", line 1, in <module>
+    from allauth.account.internal import flows
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/allauth/account/internal/flows/__init__.py", line 1, in <module>
+    from allauth.account.internal.flows import (
+    ...<12 lines>...
+    )
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/allauth/account/internal/flows/email_verification.py", line 10, in <module>
+    from allauth.account.internal.flows.manage_email import (
+    ...<3 lines>...
+    )
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/allauth/account/internal/flows/manage_email.py", line 9, in <module>
+    from allauth.account.internal.flows.reauthentication import (
+        raise_if_reauthentication_required,
+    )
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/allauth/account/internal/flows/reauthentication.py", line 11, in <module>
+    from allauth.account.authentication import get_authentication_records
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/allauth/account/authentication.py", line 1, in <module>
+    from allauth.account.internal.flows.login import AUTHENTICATION_METHODS_SESSION_KEY
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/allauth/account/internal/flows/login.py", line 11, in <module>
+    from allauth.account.models import Login
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/allauth/account/models.py", line 20, in <module>
+    class EmailAddress(models.Model):
+    ...<99 lines>...
+                user_email(self.user, alt_email, commit=True)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/db/models/base.py", line 136, in __new__
+    raise RuntimeError(
+    ...<3 lines>...
+    )
+RuntimeError: Model class allauth.account.models.EmailAddress doesn't declare an explicit app_label and isn't in an application in INSTALLED_APPS.
+"GET /admin/login/?next=/admin/ HTTP/1.1" 500 291774
+"GET /api/schema/swagger-ui/ HTTP/1.1" 200 4645
+"GET /api/schema/ HTTP/1.1" 200 91511
+Watching for file changes with StatReloader
+Internal Server Error: /
+Traceback (most recent call last):
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/defaulttags.py", line 327, in render
+    return nodelist.render(context)
+           ~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/urls/base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/urls/resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'account_login' not found. 'account_login' is not a valid view function or pattern name.
+"GET / HTTP/1.1" 500 161182
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 17607
+Internal Server Error: /products/professional-api-access/
+Traceback (most recent call last):
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/urls/base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/urls/resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'category_products' not found. 'category_products' is not a valid view function or pattern name.
+"GET /products/professional-api-access/ HTTP/1.1" 500 166910
+Internal Server Error: /products/bluetooth-speaker/
+Traceback (most recent call last):
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/urls/base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/urls/resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'category_products' not found. 'category_products' is not a valid view function or pattern name.
+"GET /products/bluetooth-speaker/ HTTP/1.1" 500 166724
+"GET / HTTP/1.1" 200 17607
+Internal Server Error: /products/
+Traceback (most recent call last):
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/defaulttags.py", line 327, in render
+    return nodelist.render(context)
+           ~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/defaulttags.py", line 243, in render
+    nodelist.append(node.render_annotated(context))
+                    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/defaulttags.py", line 327, in render
+    return nodelist.render(context)
+           ~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/urls/base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/urls/resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'account_login' not found. 'account_login' is not a valid view function or pattern name.
+"GET /products/ HTTP/1.1" 500 226088
+"GET /products/ HTTP/1.1" 200 55395
+"GET /products/ HTTP/1.1" 200 33288
+"GET /products/?search=smart HTTP/1.1" 200 13065
+"GET /auth/signup/ HTTP/1.1" 200 2696
+"GET /auth/login/ HTTP/1.1" 200 2097
+"GET /auth/signup/ HTTP/1.1" 200 2696
+Internal Server Error: /auth/signup/
+Traceback (most recent call last):
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/views/generic/base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/views/generic/base.py", line 144, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/victorama/sprint-2-ecommerce/accounts/auth_views.py", line 55, in post
+    if User.objects.filter(email=email).exists():
+       ^^^^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/db/models/manager.py", line 196, in __get__
+    raise AttributeError(
+    ...<5 lines>...
+    )
+AttributeError: Manager isn't available; 'auth.User' has been swapped for 'accounts.User'
+"POST /auth/signup/ HTTP/1.1" 500 88713
+/Users/victorama/sprint-2-ecommerce/accounts/auth_views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/victorama/sprint-2-ecommerce/accounts/auth_views.py changed, reloading.
+Watching for file changes with StatReloader
+"POST /auth/signup/ HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 2517
+"GET /auth/signup/ HTTP/1.1" 200 2696
+"POST /auth/signup/ HTTP/1.1" 200 3095
+"GET /auth/signup/ HTTP/1.1" 200 2696
+"GET /auth/login/ HTTP/1.1" 200 2097
+Internal Server Error: /auth/login/
+Traceback (most recent call last):
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/views/generic/base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/views/generic/base.py", line 144, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/victorama/sprint-2-ecommerce/accounts/auth_views.py", line 21, in post
+    user = authenticate(request, username=email, password=password)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/views/decorators/debug.py", line 75, in sensitive_variables_wrapper
+    return func(*func_args, **func_kwargs)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/contrib/auth/__init__.py", line 112, in authenticate
+    for backend, backend_path in _get_compatible_backends(request, **credentials):
+                                 ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/contrib/auth/__init__.py", line 44, in _get_compatible_backends
+    for backend, backend_path in _get_backends(return_tuples=True):
+                                 ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/contrib/auth/__init__.py", line 29, in _get_backends
+    backend = load_backend(backend_path)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/contrib/auth/__init__.py", line 23, in load_backend
+    return import_string(path)()
+           ~~~~~~~~~~~~~^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/utils/module_loading.py", line 30, in import_string
+    return cached_import(module_path, class_name)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/utils/module_loading.py", line 15, in cached_import
+    module = import_module(module_path)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/importlib/__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 1026, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/allauth/account/auth_backends.py", line 10, in <module>
+    from .utils import filter_users_by_email, filter_users_by_username
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/allauth/account/utils.py", line 12, in <module>
+    from allauth.account.internal import flows
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/allauth/account/internal/__init__.py", line 1, in <module>
+    from allauth.account.internal import flows
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/allauth/account/internal/flows/__init__.py", line 1, in <module>
+    from allauth.account.internal.flows import (
+    ...<12 lines>...
+    )
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/allauth/account/internal/flows/email_verification.py", line 10, in <module>
+    from allauth.account.internal.flows.manage_email import (
+    ...<3 lines>...
+    )
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/allauth/account/internal/flows/manage_email.py", line 9, in <module>
+    from allauth.account.internal.flows.reauthentication import (
+        raise_if_reauthentication_required,
+    )
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/allauth/account/internal/flows/reauthentication.py", line 11, in <module>
+    from allauth.account.authentication import get_authentication_records
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/allauth/account/authentication.py", line 1, in <module>
+    from allauth.account.internal.flows.login import AUTHENTICATION_METHODS_SESSION_KEY
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/allauth/account/internal/flows/login.py", line 11, in <module>
+    from allauth.account.models import Login
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/allauth/account/models.py", line 20, in <module>
+    class EmailAddress(models.Model):
+    ...<99 lines>...
+                user_email(self.user, alt_email, commit=True)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/db/models/base.py", line 136, in __new__
+    raise RuntimeError(
+    ...<3 lines>...
+    )
+RuntimeError: Model class allauth.account.models.EmailAddress doesn't declare an explicit app_label and isn't in an application in INSTALLED_APPS.
+"POST /auth/login/ HTTP/1.1" 500 275822
+Internal Server Error: /auth/login/
+Traceback (most recent call last):
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/views/generic/base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/views/generic/base.py", line 144, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/victorama/sprint-2-ecommerce/accounts/auth_views.py", line 21, in post
+    user = authenticate(request, username=email, password=password)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/views/decorators/debug.py", line 75, in sensitive_variables_wrapper
+    return func(*func_args, **func_kwargs)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/contrib/auth/__init__.py", line 112, in authenticate
+    for backend, backend_path in _get_compatible_backends(request, **credentials):
+                                 ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/contrib/auth/__init__.py", line 44, in _get_compatible_backends
+    for backend, backend_path in _get_backends(return_tuples=True):
+                                 ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/contrib/auth/__init__.py", line 29, in _get_backends
+    backend = load_backend(backend_path)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/contrib/auth/__init__.py", line 23, in load_backend
+    return import_string(path)()
+           ~~~~~~~~~~~~~^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/utils/module_loading.py", line 30, in import_string
+    return cached_import(module_path, class_name)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/utils/module_loading.py", line 15, in cached_import
+    module = import_module(module_path)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/importlib/__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 1026, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/allauth/account/auth_backends.py", line 10, in <module>
+    from .utils import filter_users_by_email, filter_users_by_username
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/allauth/account/utils.py", line 12, in <module>
+    from allauth.account.internal import flows
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/allauth/account/internal/__init__.py", line 1, in <module>
+    from allauth.account.internal import flows
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/allauth/account/internal/flows/__init__.py", line 1, in <module>
+    from allauth.account.internal.flows import (
+    ...<12 lines>...
+    )
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/allauth/account/internal/flows/email_verification.py", line 10, in <module>
+    from allauth.account.internal.flows.manage_email import (
+    ...<3 lines>...
+    )
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/allauth/account/internal/flows/manage_email.py", line 9, in <module>
+    from allauth.account.internal.flows.reauthentication import (
+        raise_if_reauthentication_required,
+    )
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/allauth/account/internal/flows/reauthentication.py", line 11, in <module>
+    from allauth.account.authentication import get_authentication_records
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/allauth/account/authentication.py", line 1, in <module>
+    from allauth.account.internal.flows.login import AUTHENTICATION_METHODS_SESSION_KEY
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/allauth/account/internal/flows/login.py", line 11, in <module>
+    from allauth.account.models import Login
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/allauth/account/models.py", line 20, in <module>
+    class EmailAddress(models.Model):
+    ...<99 lines>...
+                user_email(self.user, alt_email, commit=True)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/db/models/base.py", line 136, in __new__
+    raise RuntimeError(
+    ...<3 lines>...
+    )
+RuntimeError: Model class allauth.account.models.EmailAddress doesn't declare an explicit app_label and isn't in an application in INSTALLED_APPS.
+"POST /auth/login/ HTTP/1.1" 500 275822
+Internal Server Error: /auth/login/
+Traceback (most recent call last):
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/views/generic/base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/views/generic/base.py", line 144, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/victorama/sprint-2-ecommerce/accounts/auth_views.py", line 21, in post
+    user = authenticate(request, username=email, password=password)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/views/decorators/debug.py", line 75, in sensitive_variables_wrapper
+    return func(*func_args, **func_kwargs)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/contrib/auth/__init__.py", line 112, in authenticate
+    for backend, backend_path in _get_compatible_backends(request, **credentials):
+                                 ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/contrib/auth/__init__.py", line 44, in _get_compatible_backends
+    for backend, backend_path in _get_backends(return_tuples=True):
+                                 ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/contrib/auth/__init__.py", line 29, in _get_backends
+    backend = load_backend(backend_path)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/contrib/auth/__init__.py", line 23, in load_backend
+    return import_string(path)()
+           ~~~~~~~~~~~~~^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/utils/module_loading.py", line 30, in import_string
+    return cached_import(module_path, class_name)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/utils/module_loading.py", line 15, in cached_import
+    module = import_module(module_path)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/importlib/__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 1026, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/allauth/account/auth_backends.py", line 10, in <module>
+    from .utils import filter_users_by_email, filter_users_by_username
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/allauth/account/utils.py", line 12, in <module>
+    from allauth.account.internal import flows
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/allauth/account/internal/__init__.py", line 1, in <module>
+    from allauth.account.internal import flows
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/allauth/account/internal/flows/__init__.py", line 1, in <module>
+    from allauth.account.internal.flows import (
+    ...<12 lines>...
+    )
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/allauth/account/internal/flows/email_verification.py", line 10, in <module>
+    from allauth.account.internal.flows.manage_email import (
+    ...<3 lines>...
+    )
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/allauth/account/internal/flows/manage_email.py", line 9, in <module>
+    from allauth.account.internal.flows.reauthentication import (
+        raise_if_reauthentication_required,
+    )
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/allauth/account/internal/flows/reauthentication.py", line 11, in <module>
+    from allauth.account.authentication import get_authentication_records
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/allauth/account/authentication.py", line 1, in <module>
+    from allauth.account.internal.flows.login import AUTHENTICATION_METHODS_SESSION_KEY
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/allauth/account/internal/flows/login.py", line 11, in <module>
+    from allauth.account.models import Login
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/allauth/account/models.py", line 20, in <module>
+    class EmailAddress(models.Model):
+    ...<99 lines>...
+                user_email(self.user, alt_email, commit=True)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/db/models/base.py", line 136, in __new__
+    raise RuntimeError(
+    ...<3 lines>...
+    )
+RuntimeError: Model class allauth.account.models.EmailAddress doesn't declare an explicit app_label and isn't in an application in INSTALLED_APPS.
+"POST /auth/login/ HTTP/1.1" 500 275886
+/Users/victorama/sprint-2-ecommerce/accounts/auth_views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/victorama/sprint-2-ecommerce/accounts/auth_views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/victorama/sprint-2-ecommerce/accounts/auth_views.py changed, reloading.
+Watching for file changes with StatReloader
+"POST /auth/login/ HTTP/1.1" 200 2502
+"POST /auth/login/ HTTP/1.1" 200 2502
+"POST /auth/login/ HTTP/1.1" 200 2502
+"POST /auth/login/ HTTP/1.1" 200 2502
+"GET /auth/signup/ HTTP/1.1" 200 2696
+"POST /auth/signup/ HTTP/1.1" 200 3114
+"POST /auth/signup/ HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 2517
+"POST /auth/login/ HTTP/1.1" 200 2502
+/Users/victorama/sprint-2-ecommerce/accounts/auth_views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/victorama/sprint-2-ecommerce/accounts/auth_views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/victorama/sprint-2-ecommerce/accounts/auth_views.py changed, reloading.
+Watching for file changes with StatReloader
+"POST /auth/login/ HTTP/1.1" 200 2512
+"POST /auth/login/ HTTP/1.1" 200 2512
+"POST /auth/login/ HTTP/1.1" 200 2502
+"POST /auth/login/ HTTP/1.1" 200 2502
+"GET /admin HTTP/1.1" 301 0
+"GET /admin/ HTTP/1.1" 302 0
+Internal Server Error: /admin/login/
+Traceback (most recent call last):
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/contrib/admin/sites.py", line 430, in login
+    **self.each_context(request),
+      ~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/contrib/admin/sites.py", line 343, in each_context
+    "available_apps": self.get_app_list(request),
+                      ~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/contrib/admin/sites.py", line 546, in get_app_list
+    app_dict = self._build_app_dict(request, app_label)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/contrib/admin/sites.py", line 488, in _build_app_dict
+    has_module_perms = model_admin.has_module_permission(request)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/contrib/admin/options.py", line 641, in has_module_permission
+    return request.user.has_module_perms(self.opts.app_label)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/contrib/auth/models.py", line 620, in has_module_perms
+    return _user_has_module_perms(self, module)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/contrib/auth/models.py", line 293, in _user_has_module_perms
+    for backend in auth.get_backends():
+                   ~~~~~~~~~~~~~~~~~^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/contrib/auth/__init__.py", line 40, in get_backends
+    return _get_backends(return_tuples=False)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/contrib/auth/__init__.py", line 29, in _get_backends
+    backend = load_backend(backend_path)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/contrib/auth/__init__.py", line 23, in load_backend
+    return import_string(path)()
+           ~~~~~~~~~~~~~^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/utils/module_loading.py", line 30, in import_string
+    return cached_import(module_path, class_name)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/utils/module_loading.py", line 15, in cached_import
+    module = import_module(module_path)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/importlib/__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1310, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1310, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'allauth'
+"GET /admin/login/?next=/admin/ HTTP/1.1" 500 153395
+/Users/victorama/sprint-2-ecommerce/accounts/models.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/victorama/sprint-2-ecommerce/accounts/models.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/victorama/sprint-2-ecommerce/accounts/models.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/victorama/sprint-2-ecommerce/accounts/auth_views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/victorama/sprint-2-ecommerce/accounts/auth_views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/victorama/sprint-2-ecommerce/accounts/auth_views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/victorama/sprint-2-ecommerce/accounts/auth_views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/victorama/sprint-2-ecommerce/accounts/auth_views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/victorama/sprint-2-ecommerce/accounts/migrations/__init__.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/utils/termcolors.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Not Found: /login
+"GET /login HTTP/1.1" 404 3753
+"GET / HTTP/1.1" 200 10197
+"GET /auth/login/ HTTP/1.1" 200 2097
+"GET /auth/signup/ HTTP/1.1" 200 2696
+"POST /auth/signup/ HTTP/1.1" 302 0
+"GET /auth/login/ HTTP/1.1" 200 2517
+"POST /auth/login/ HTTP/1.1" 200 2502
+"POST /auth/login/ HTTP/1.1" 200 2502
+/Users/victorama/sprint-2-ecommerce/bluewave_ecommerce/settings.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/victorama/sprint-2-ecommerce/accounts/auth_views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/victorama/sprint-2-ecommerce/accounts/auth_views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/victorama/sprint-2-ecommerce/accounts/auth_views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/victorama/sprint-2-ecommerce/accounts/auth_views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/victorama/sprint-2-ecommerce/accounts/auth_views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET / HTTP/1.1" 200 13532
+"GET /auth/logout/ HTTP/1.1" 302 0
+"GET / HTTP/1.1" 200 11920
+"GET /auth/login/ HTTP/1.1" 200 2097
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET / HTTP/1.1" 200 13532
+"GET / HTTP/1.1" 200 13207
+"GET /products/ HTTP/1.1" 200 12624
+"GET / HTTP/1.1" 200 13207
+"GET /products/ HTTP/1.1" 200 12624
+"GET / HTTP/1.1" 200 13207
+"GET / HTTP/1.1" 200 13207
+"GET / HTTP/1.1" 200 13207
+"GET /products/ HTTP/1.1" 200 12624
+"GET / HTTP/1.1" 200 13207
+"GET /products/ HTTP/1.1" 200 12624
+"GET /admin/ HTTP/1.1" 302 0
+"GET /admin/login/?next=/admin/ HTTP/1.1" 200 3689
+"GET /static/admin/css/base.css HTTP/1.1" 200 22120
+"GET /static/admin/css/dark_mode.css HTTP/1.1" 200 2808
+"GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2810
+"GET /static/admin/css/login.css HTTP/1.1" 200 951
+"GET /static/admin/js/theme.js HTTP/1.1" 200 1653
+"GET /static/admin/css/responsive.css HTTP/1.1" 200 16565
+"GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
+"POST /admin/login/?next=/admin/ HTTP/1.1" 302 0
+"GET /admin/ HTTP/1.1" 200 13359
+"GET /static/admin/css/dashboard.css HTTP/1.1" 200 441
+"GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 331
+"GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 380
+"GET /admin/login/?next=/admin/ HTTP/1.1" 302 0
+"GET /admin/ HTTP/1.1" 200 13359
+"GET /auth/setup-mfa/ HTTP/1.1" 200 5473
+/Users/victorama/sprint-2-ecommerce/products/admin.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/victorama/sprint-2-ecommerce/products/admin.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/victorama/sprint-2-ecommerce/products/admin.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/victorama/sprint-2-ecommerce/accounts/admin.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/victorama/sprint-2-ecommerce/accounts/admin.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/victorama/sprint-2-ecommerce/bluewave_ecommerce/__init__.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET /admin/ HTTP/1.1" 302 0
+"GET /admin/login/?next=/admin/ HTTP/1.1" 200 4170
+"GET /static/admin/css/base.css HTTP/1.1" 200 22120
+"GET /static/admin/css/dark_mode.css HTTP/1.1" 200 2808
+"GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2810
+"GET /static/admin/css/responsive.css HTTP/1.1" 200 16565
+"GET /static/admin/js/theme.js HTTP/1.1" 200 1653
+"GET /static/admin/css/login.css HTTP/1.1" 200 951
+"GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3771
+"POST /admin/login/?next=/admin/ HTTP/1.1" 302 0
+"GET /admin/ HTTP/1.1" 200 6649
+"GET /static/admin/css/dashboard.css HTTP/1.1" 200 441
+"GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 380
+"GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 331
+Internal Server Error: /admin/products/product/add/
+Traceback (most recent call last):
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/contrib/admin/options.py", line 840, in get_form
+    return modelform_factory(self.model, **defaults)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/forms/models.py", line 654, in modelform_factory
+    return type(form)(class_name, (form,), form_class_attrs)
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/forms/models.py", line 334, in __new__
+    raise FieldError(message)
+django.core.exceptions.FieldError: Unknown field(s) (track_inventory, requires_shipping) specified for Product
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/contrib/admin/options.py", line 719, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/utils/decorators.py", line 192, in _view_wrapper
+    result = _process_exception(request, e)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/utils/decorators.py", line 190, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/contrib/admin/sites.py", line 246, in inner
+    return view(request, *args, **kwargs)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/contrib/admin/options.py", line 1984, in add_view
+    return self.changeform_view(request, None, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/utils/decorators.py", line 192, in _view_wrapper
+    result = _process_exception(request, e)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/utils/decorators.py", line 190, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/contrib/admin/options.py", line 1840, in changeform_view
+    return self._changeform_view(request, object_id, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/contrib/admin/options.py", line 1878, in _changeform_view
+    ModelForm = self.get_form(
+        request, obj, change=not add, fields=flatten_fieldsets(fieldsets)
+    )
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/contrib/admin/options.py", line 842, in get_form
+    raise FieldError(
+    ...<2 lines>...
+    )
+django.core.exceptions.FieldError: Unknown field(s) (track_inventory, requires_shipping) specified for Product. Check fields/fieldsets/exclude attributes of class ProductAdmin.
+"GET /admin/products/product/add/ HTTP/1.1" 500 155077
+/Users/victorama/sprint-2-ecommerce/products/admin.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /admin/products/product/add/ HTTP/1.1" 200 20667
+"GET /static/admin/js/core.js HTTP/1.1" 200 6208
+"GET /static/admin/css/forms.css HTTP/1.1" 200 8525
+"GET /static/admin/js/jquery.init.js HTTP/1.1" 200 347
+"GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 200 9777
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /static/admin/js/prepopulate.js HTTP/1.1" 200 1531
+"GET /static/admin/js/actions.js HTTP/1.1" 200 8076
+"GET /static/admin/js/urlify.js HTTP/1.1" 200 7887
+"GET /static/admin/js/prepopulate_init.js HTTP/1.1" 200 586
+"GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 200 325171
+"GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 200 285314
+"GET /static/admin/css/widgets.css HTTP/1.1" 200 11991
+"GET /static/admin/js/change_form.js HTTP/1.1" 200 606
+/Users/victorama/sprint-2-ecommerce/products/admin.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/victorama/sprint-2-ecommerce/products/admin.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/victorama/sprint-2-ecommerce/products/urls.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/victorama/sprint-2-ecommerce/products/simple_views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /admin/ HTTP/1.1" 200 6649
+"GET /static/admin/css/base.css HTTP/1.1" 304 0
+"GET /static/admin/css/dark_mode.css HTTP/1.1" 304 0
+"GET /static/admin/css/nav_sidebar.css HTTP/1.1" 304 0
+"GET /static/admin/js/theme.js HTTP/1.1" 304 0
+"GET /static/admin/css/dashboard.css HTTP/1.1" 304 0
+"GET /static/admin/css/responsive.css HTTP/1.1" 304 0
+"GET /static/admin/js/nav_sidebar.js HTTP/1.1" 304 0
+"GET /static/admin/img/icon-changelink.svg HTTP/1.1" 304 0
+"GET /static/admin/img/icon-addlink.svg HTTP/1.1" 304 0
+/Users/victorama/sprint-2-ecommerce/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /products/ HTTP/1.1" 200 12582
+"GET / HTTP/1.1" 200 13307
+Watching for file changes with StatReloader
+"GET /auth/logout/ HTTP/1.1" 302 0
+"GET / HTTP/1.1" 200 11920
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3882
+"GET /products/ HTTP/1.1" 200 11337
+"GET /cart/wishlist/ HTTP/1.1" 302 0
+Not Found: /accounts/login/
+"GET /accounts/login/?next=/cart/wishlist/ HTTP/1.1" 404 3804
+"GET / HTTP/1.1" 200 11920
+"GET /auth/signup/ HTTP/1.1" 200 2696
+"POST /auth/signup/ HTTP/1.1" 302 0
+"GET / HTTP/1.1" 200 13569
+"GET /products/ HTTP/1.1" 200 12636
+"GET / HTTP/1.1" 200 13219
+Internal Server Error: /cart/
+Traceback (most recent call last):
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/response.py", line 90, in rendered_content
+    template = self.resolve_template(self.template_name)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/response.py", line 72, in resolve_template
+    return select_template(template, using=self.using)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/loader.py", line 47, in select_template
+    raise TemplateDoesNotExist(", ".join(template_name_list), chain=chain)
+django.template.exceptions.TemplateDoesNotExist: cart/cart.html
+"GET /cart/ HTTP/1.1" 500 89222
+Internal Server Error: /cart/wishlist/
+Traceback (most recent call last):
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/response.py", line 90, in rendered_content
+    template = self.resolve_template(self.template_name)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/response.py", line 72, in resolve_template
+    return select_template(template, using=self.using)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/loader.py", line 47, in select_template
+    raise TemplateDoesNotExist(", ".join(template_name_list), chain=chain)
+django.template.exceptions.TemplateDoesNotExist: cart/wishlist.html
+"GET /cart/wishlist/ HTTP/1.1" 500 89395
+"GET /admin/products/product/add/ HTTP/1.1" 200 18997
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+Watching for file changes with StatReloader
+"POST /admin/products/product/add/ HTTP/1.1" 302 0
+"GET /admin/products/product/add/ HTTP/1.1" 200 19234
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /static/admin/img/icon-yes.svg HTTP/1.1" 200 436
+"GET / HTTP/1.1" 200 13219
+"GET / HTTP/1.1" 200 13219
+"GET /products/ HTTP/1.1" 200 14385
+"GET /media/products/premium_photo-1673967831980-1d377baaded2.jpeg HTTP/1.1" 200 1521111
+"GET /cart/ HTTP/1.1" 200 15408
+"POST /cart/add/ HTTP/1.1" 200 69
+"GET /cart/ HTTP/1.1" 200 19460
+"GET /media/products/premium_photo-1673967831980-1d377baaded2.jpeg HTTP/1.1" 304 0
+"GET /products/ HTTP/1.1" 200 14385
+"GET /media/products/premium_photo-1673967831980-1d377baaded2.jpeg HTTP/1.1" 304 0
+"GET /admin/accounts/apitoken/add/ HTTP/1.1" 200 19159
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /static/admin/js/calendar.js HTTP/1.1" 200 9141
+"GET /static/admin/js/admin/DateTimeShortcuts.js HTTP/1.1" 200 19319
+"GET /static/admin/img/icon-clock.svg HTTP/1.1" 200 677
+"GET /static/admin/img/icon-calendar.svg HTTP/1.1" 200 1086
+"GET /admin/products/product/add/ HTTP/1.1" 200 18997
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+/Users/victorama/sprint-2-ecommerce/products/models.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /cart/
+Traceback (most recent call last):
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/db/models/fields/related_descriptors.py", line 243, in __get__
+    rel_obj = self.field.get_cached_value(instance)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/db/models/fields/mixins.py", line 37, in get_cached_value
+    return instance._state.fields_cache[self.cache_name]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+KeyError: 'product'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/db/backends/sqlite3/base.py", line 360, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such column: products_product.environmental_matrix
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/views/generic/base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/views/generic/base.py", line 144, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/views/generic/base.py", line 228, in get
+    context = self.get_context_data(**kwargs)
+  File "/Users/victorama/sprint-2-ecommerce/cart/simple_views.py", line 23, in get_context_data
+    context['total_price'] = cart.get_total_price()
+                             ~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/victorama/sprint-2-ecommerce/cart/models.py", line 28, in get_total_price
+    return sum(item.get_total_price() for item in self.items.all())
+  File "/Users/victorama/sprint-2-ecommerce/cart/models.py", line 28, in <genexpr>
+    return sum(item.get_total_price() for item in self.items.all())
+               ~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/victorama/sprint-2-ecommerce/cart/models.py", line 66, in get_total_price
+    return self.product.price * self.quantity
+           ^^^^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/db/models/fields/related_descriptors.py", line 261, in __get__
+    rel_obj = self.get_object(instance)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/db/models/fields/related_descriptors.py", line 224, in get_object
+    return qs.get(self.field.get_reverse_related_filter(instance))
+           ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/db/models/query.py", line 629, in get
+    num = len(clone)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/db/models/query.py", line 366, in __len__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/db/models/query.py", line 1949, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/db/models/query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+    )
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/db/models/sql/compiler.py", line 1623, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/db/backends/utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/db/backends/sqlite3/base.py", line 360, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: no such column: products_product.environmental_matrix
+"GET /cart/ HTTP/1.1" 500 191840
+/Users/victorama/sprint-2-ecommerce/products/admin.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /admin/accounts/apitoken/add/ HTTP/1.1" 200 19159
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+/Users/victorama/sprint-2-ecommerce/products/admin.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/victorama/sprint-2-ecommerce/products/admin.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/victorama/sprint-2-ecommerce/api/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET /admin/accounts/apitoken/add/ HTTP/1.1" 200 19159
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/products/product/ HTTP/1.1" 200 12109
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /static/admin/img/search.svg HTTP/1.1" 200 458
+"GET /static/admin/css/changelists.css HTTP/1.1" 200 6878
+"GET /static/admin/js/filters.js HTTP/1.1" 200 978
+"GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 331
+"GET /static/admin/img/sorting-icons.svg HTTP/1.1" 200 1097
+"GET /static/admin/img/icon-viewlink.svg HTTP/1.1" 200 581
+"GET /admin/products/product/?status__exact=draft HTTP/1.1" 200 10771
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/products/product/?status__exact=active HTTP/1.1" 200 12661
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/products/product/?status__exact=inactive HTTP/1.1" 200 10795
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/products/product/?status__exact=out_of_stock HTTP/1.1" 200 10827
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/products/product/?created_at__gte=2025-09-05+00%3A00%3A00%2B00%3A00&created_at__lt=2025-09-06+00%3A00%3A00%2B00%3A00&status__exact=out_of_stock HTTP/1.1" 200 11758
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/products/product/?created_at__gte=2025-08-29+00%3A00%3A00%2B00%3A00&created_at__lt=2025-09-06+00%3A00%3A00%2B00%3A00&status__exact=out_of_stock HTTP/1.1" 200 11758
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/products/product/?created_at__gte=2025-09-01+00%3A00%3A00%2B00%3A00&created_at__lt=2025-10-01+00%3A00%3A00%2B00%3A00&status__exact=out_of_stock HTTP/1.1" 200 11758
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/products/product/?created_at__gte=2025-09-01+00%3A00%3A00%2B00%3A00&created_at__lt=2025-10-01+00%3A00%3A00%2B00%3A00&status__exact=active HTTP/1.1" 200 14468
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/products/product/?created_at__gte=2025-09-05+00%3A00%3A00%2B00%3A00&created_at__lt=2025-09-06+00%3A00%3A00%2B00%3A00&status__exact=active HTTP/1.1" 200 14468
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/products/product/?created_at__gte=2025-08-29+00%3A00%3A00%2B00%3A00&created_at__lt=2025-09-06+00%3A00%3A00%2B00%3A00&status__exact=active HTTP/1.1" 200 14468
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/products/product/?created_at__gte=2025-09-01+00%3A00%3A00%2B00%3A00&created_at__lt=2025-10-01+00%3A00%3A00%2B00%3A00&status__exact=active HTTP/1.1" 200 14468
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/products/product/?created_at__gte=2025-01-01+00%3A00%3A00%2B00%3A00&created_at__lt=2026-01-01+00%3A00%3A00%2B00%3A00&status__exact=active HTTP/1.1" 200 14468
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/products/product/?status__exact=active HTTP/1.1" 200 12661
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/products/product/add/?_changelist_filters=status__exact%3Dactive HTTP/1.1" 200 21008
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+Not Found: /api/swagger/
+"GET /api/swagger/ HTTP/1.1" 404 15122
+"GET /admin/accounts/apitoken/add/ HTTP/1.1" 200 19159
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /api/schema/swagger-ui/ HTTP/1.1" 200 4645
+"GET /api/schema/ HTTP/1.1" 200 84371
+Unauthorized: /api/cart/
+"GET /api/cart/ HTTP/1.1" 401 58
+"GET /static/admin/img/calendar-icons.svg HTTP/1.1" 200 2455
+"POST /admin/accounts/apitoken/add/ HTTP/1.1" 302 0
+"GET /admin/accounts/apitoken/ HTTP/1.1" 200 13647
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/accounts/apitoken/1/change/ HTTP/1.1" 200 19910
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+Unauthorized: /api/cart/
+"GET /api/cart/ HTTP/1.1" 401 58
+Unauthorized: /api/cart/
+"GET /api/cart/ HTTP/1.1" 401 58
+/Users/victorama/sprint-2-ecommerce/bluewave_ecommerce/settings.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET /admin/accounts/apitoken/1/change/ HTTP/1.1" 200 19910
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/accounts/apitoken/1/history/ HTTP/1.1" 200 7255
+"GET /admin/accounts/apitoken/ HTTP/1.1" 200 13406
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/accounts/apitoken/1/change/ HTTP/1.1" 200 19910
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /api/schema/swagger-ui/ HTTP/1.1" 200 4708
+"GET /api/schema/ HTTP/1.1" 200 77209
+Unauthorized: /api/cart/
+"GET /api/cart/ HTTP/1.1" 401 34
+/Users/victorama/sprint-2-ecommerce/bluewave_ecommerce/settings.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/victorama/sprint-2-ecommerce/bluewave_ecommerce/settings.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET /products HTTP/1.1" 301 0
+"GET /products/ HTTP/1.1" 200 14385
+"GET /media/products/premium_photo-1673967831980-1d377baaded2.jpeg HTTP/1.1" 304 0
+"GET / HTTP/1.1" 200 13219
+"GET / HTTP/1.1" 200 13219
+"GET /products/ HTTP/1.1" 200 14385
+Internal Server Error: /products/1/
+Traceback (most recent call last):
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/urls/base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/urls/resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'category_products' not found. 'category_products' is not a valid view function or pattern name.
+"GET /products/1/ HTTP/1.1" 500 164561
+"GET /products/?search=sdfgdg HTTP/1.1" 200 12815
+"GET /products/?search=item HTTP/1.1" 200 14389
+"GET /media/products/premium_photo-1673967831980-1d377baaded2.jpeg HTTP/1.1" 304 0
+Watching for file changes with StatReloader
+"GET /api/schema/swagger-ui/ HTTP/1.1" 200 4708
+"GET /api/schema/ HTTP/1.1" 200 74957
+"GET /auth/signup/ HTTP/1.1" 200 2696
+"GET /products/1/ HTTP/1.1" 200 17585
+"GET /media/products/premium_photo-1673967831980-1d377baaded2.jpeg HTTP/1.1" 304 0
+"GET /cart/wishlist/ HTTP/1.1" 200 14252
+"GET /cart/ HTTP/1.1" 200 19460
+"GET /media/products/premium_photo-1673967831980-1d377baaded2.jpeg HTTP/1.1" 304 0
+"GET /cart/ HTTP/1.1" 200 19460
+Watching for file changes with StatReloader
+"GET /cart/wishlist/ HTTP/1.1" 200 14252
+"GET /cart/ HTTP/1.1" 200 19460
+"GET /media/products/premium_photo-1673967831980-1d377baaded2.jpeg HTTP/1.1" 304 0
+"GET /products/ HTTP/1.1" 200 14385
+"POST /cart/add/ HTTP/1.1" 200 69
+"GET /cart/ HTTP/1.1" 200 19462
+"GET /products/ HTTP/1.1" 200 14385
+"GET / HTTP/1.1" 200 13219
+"GET /cart/ HTTP/1.1" 200 20124
+"GET /products/1/ HTTP/1.1" 200 20935
+/Users/victorama/sprint-2-ecommerce/products/simple_views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 13219
+"GET /products/ HTTP/1.1" 200 14385
+Internal Server Error: /products/1/
+Traceback (most recent call last):
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/defaulttags.py", line 327, in render
+    return nodelist.render(context)
+           ~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/defaulttags.py", line 327, in render
+    return nodelist.render(context)
+           ~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/defaulttags.py", line 327, in render
+    return nodelist.render(context)
+           ~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/template/defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/urls/base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "/Users/victorama/sprint-2-ecommerce/bluewave_env/lib/python3.13/site-packages/django/urls/resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'view_cart' not found. 'view_cart' is not a valid view function or pattern name.
+"GET /products/1/ HTTP/1.1" 500 204113
+"GET /products/1/ HTTP/1.1" 200 20628
+"POST /cart/remove/ HTTP/1.1" 200 91
+"GET /products/1/ HTTP/1.1" 200 20935
+"POST /cart/add/ HTTP/1.1" 200 69
+"GET /products/1/ HTTP/1.1" 200 20627
+"POST /cart/wishlist/add/ HTTP/1.1" 200 77
+"GET /cart/wishlist/ HTTP/1.1" 200 16228
+"GET /cart/wishlist/ HTTP/1.1" 200 16228
+"GET /cart/wishlist/ HTTP/1.1" 200 16228
+"GET /admin/ HTTP/1.1" 302 0
+"GET /admin/login/?next=/admin/ HTTP/1.1" 200 3687
+"GET /static/admin/css/dark_mode.css HTTP/1.1" 304 0
+"GET /static/admin/css/base.css HTTP/1.1" 304 0
+"GET /static/admin/css/nav_sidebar.css HTTP/1.1" 304 0
+"GET /static/admin/css/login.css HTTP/1.1" 304 0
+"GET /static/admin/css/responsive.css HTTP/1.1" 304 0
+"GET /static/admin/js/theme.js HTTP/1.1" 304 0
+"GET /static/admin/js/nav_sidebar.js HTTP/1.1" 304 0
+"POST /admin/login/?next=/admin/ HTTP/1.1" 302 0
+"GET /admin/ HTTP/1.1" 200 7417
+"GET /static/admin/css/dashboard.css HTTP/1.1" 304 0
+"GET /static/admin/img/icon-addlink.svg HTTP/1.1" 304 0
+"GET /static/admin/img/icon-changelink.svg HTTP/1.1" 304 0
+"GET /admin/accounts/apitoken/add/ HTTP/1.1" 200 19159
+"GET /static/admin/js/jquery.init.js HTTP/1.1" 200 347
+"GET /static/admin/css/forms.css HTTP/1.1" 200 8525
+"GET /static/admin/js/calendar.js HTTP/1.1" 200 9141
+"GET /static/admin/js/admin/DateTimeShortcuts.js HTTP/1.1" 200 19319
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 200 9777
+"GET /static/admin/js/urlify.js HTTP/1.1" 200 7887
+"GET /static/admin/js/actions.js HTTP/1.1" 200 8076
+"GET /static/admin/js/core.js HTTP/1.1" 200 6208
+"GET /static/admin/css/widgets.css HTTP/1.1" 200 11991
+"GET /static/admin/js/prepopulate.js HTTP/1.1" 200 1531
+"GET /static/admin/js/prepopulate_init.js HTTP/1.1" 200 586
+"GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 200 285314
+"GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 200 325171
+"GET /static/admin/js/change_form.js HTTP/1.1" 200 606
+"GET /static/admin/img/icon-calendar.svg HTTP/1.1" 200 1086
+"GET /static/admin/img/icon-clock.svg HTTP/1.1" 200 677
+"GET /admin/ HTTP/1.1" 200 7417
+"GET /admin/accounts/apitoken/1/change/ HTTP/1.1" 200 19910
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/accounts/apitoken/1/history/ HTTP/1.1" 200 7255
+"GET /admin/accounts/apitoken/add/ HTTP/1.1" 200 19159
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /static/admin/img/calendar-icons.svg HTTP/1.1" 200 2455
+"POST /admin/accounts/apitoken/add/ HTTP/1.1" 200 19421
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /admin/accounts/apitoken/add/ HTTP/1.1" 302 0
+"GET /admin/accounts/apitoken/ HTTP/1.1" 200 14241
+"GET /static/admin/css/changelists.css HTTP/1.1" 200 6878
+"GET /static/admin/img/icon-yes.svg HTTP/1.1" 200 436
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /static/admin/img/search.svg HTTP/1.1" 200 458
+"GET /static/admin/js/filters.js HTTP/1.1" 200 978
+"GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 331
+"GET /static/admin/img/sorting-icons.svg HTTP/1.1" 200 1097
+"GET /static/admin/img/icon-viewlink.svg HTTP/1.1" 200 581
+"GET /admin/accounts/apitoken/2/change/ HTTP/1.1" 200 19828
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/accounts/apitoken/2/delete/ HTTP/1.1" 200 7902
+"GET /static/admin/js/cancel.js HTTP/1.1" 200 884
+"POST /admin/accounts/apitoken/2/delete/ HTTP/1.1" 302 0
+"GET /admin/accounts/apitoken/ HTTP/1.1" 200 13582
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/accounts/apitoken/ HTTP/1.1" 200 13406
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/accounts/apitoken/add/ HTTP/1.1" 200 19159
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /admin/accounts/apitoken/add/ HTTP/1.1" 302 0
+"GET /admin/accounts/apitoken/ HTTP/1.1" 200 14238
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/accounts/apitoken/1/change/ HTTP/1.1" 200 19910
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/accounts/apitoken/ HTTP/1.1" 200 14016
+"GET /admin/accounts/apitoken/3/change/ HTTP/1.1" 200 19812
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /api/schema/swagger-ui/ HTTP/1.1" 200 4708
+"GET /api/schema/ HTTP/1.1" 200 74957
+Unauthorized: /api/cart/
+"GET /api/cart/ HTTP/1.1" 401 58
+"GET /api/cart/ HTTP/1.1" 200 52
+"GET /cart/ HTTP/1.1" 200 15354
+"GET /cart/ HTTP/1.1" 200 15354
+"GET /auth/logout/ HTTP/1.1" 302 0
+"GET / HTTP/1.1" 200 11920
+"GET /auth/login/ HTTP/1.1" 200 2097
+"POST /auth/login/ HTTP/1.1" 200 2500
+"POST /auth/login/ HTTP/1.1" 200 2500
+"POST /auth/login/ HTTP/1.1" 302 0
+"GET / HTTP/1.1" 200 13544
+"GET /cart/ HTTP/1.1" 200 20122
+"GET /media/products/premium_photo-1673967831980-1d377baaded2.jpeg HTTP/1.1" 304 0
+/Users/victorama/sprint-2-ecommerce/orders/urls.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/victorama/sprint-2-ecommerce/bluewave_ecommerce/settings.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/victorama/sprint-2-ecommerce/orders/payment_views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/victorama/sprint-2-ecommerce/orders/payment_views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/victorama/sprint-2-ecommerce/orders/payment_views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/victorama/sprint-2-ecommerce/orders/urls.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /cart/ HTTP/1.1" 200 20804
+"GET /media/products/premium_photo-1673967831980-1d377baaded2.jpeg HTTP/1.1" 304 0
+"POST /orders/checkout/ HTTP/1.1" 302 0
+"GET /cart/ HTTP/1.1" 200 21178
+"POST /orders/checkout/ HTTP/1.1" 302 0
+"GET /cart/ HTTP/1.1" 200 21178
+"POST /orders/checkout/ HTTP/1.1" 302 0
+"GET /cart/ HTTP/1.1" 200 21178
+"POST /orders/checkout/ HTTP/1.1" 302 0
+"GET /cart/ HTTP/1.1" 200 21178
+"POST /orders/checkout/ HTTP/1.1" 302 0
+"GET /cart/ HTTP/1.1" 200 21178
+/Users/victorama/sprint-2-ecommerce/orders/payment_views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/victorama/sprint-2-ecommerce/orders/payment_views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/Users/victorama/sprint-2-ecommerce/orders/urls.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/victorama/sprint-2-ecommerce/orders/urls.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /cart/ HTTP/1.1" 200 20804
+"POST /orders/checkout/ HTTP/1.1" 200 42
+"POST /orders/checkout/ HTTP/1.1" 200 42
+/Users/victorama/sprint-2-ecommerce/orders/urls.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/victorama/sprint-2-ecommerce/orders/payment_views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /cart/ HTTP/1.1" 200 20804
+"POST /orders/checkout/ HTTP/1.1" 302 0
+"GET /orders/checkout/success/?session_id=cs_test_a1WVzTmW3TScnfh6qovkk2fREaWbaDH7NCT8a1VvhcDrPjItxicf5Ri57l HTTP/1.1" 302 0
+"GET /orders/confirmation/86375678-c89f-42de-80c0-c35366060e2f/ HTTP/1.1" 200 16447
+"GET / HTTP/1.1" 200 13627
+/Users/victorama/sprint-2-ecommerce/accounts/models.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 13627

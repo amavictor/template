@@ -1,0 +1,529 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard - TechMart{% endblock %}
+
+{% block extra_css %}
+<style>
+    .dashboard-card {
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        transition: all 0.3s ease;
+    }
+    
+    .dashboard-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+    
+    .dashboard-header {
+        background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+        color: white;
+        border-radius: 15px;
+        padding: 2rem;
+        margin-bottom: 2rem;
+    }
+    
+    .stat-card {
+        background: white;
+        border-radius: 12px;
+        padding: 1.5rem;
+        text-align: center;
+        border-left: 4px solid var(--primary-color);
+    }
+    
+    .stat-number {
+        font-size: 2rem;
+        font-weight: bold;
+        color: var(--primary-color);
+    }
+    
+    .stat-label {
+        color: #6c757d;
+        font-size: 0.9rem;
+        margin-top: 0.5rem;
+    }
+    
+    .token-table {
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+    }
+    
+    .token-row {
+        border-bottom: 1px solid #f1f3f5;
+        transition: background-color 0.2s ease;
+    }
+    
+    .token-row:hover {
+        background-color: #f8f9fa;
+    }
+    
+    .token-status.active {
+        color: #28a745;
+    }
+    
+    .token-status.expired {
+        color: #dc3545;
+    }
+    
+    .token-key {
+        font-family: 'Courier New', monospace;
+        background: #f1f3f5;
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        font-size: 0.85rem;
+    }
+    
+    .create-token-btn {
+        background: linear-gradient(135deg, var(--primary-color), #8b5cf6);
+        border: none;
+        color: white;
+        padding: 0.75rem 1.5rem;
+        border-radius: 8px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+    
+    .create-token-btn:hover {
+        background: linear-gradient(135deg, #5855eb, #7c3aed);
+        transform: translateY(-2px);
+        color: white;
+    }
+    
+    .quick-action-card {
+        border: 2px dashed #e9ecef;
+        border-radius: 12px;
+        padding: 2rem;
+        text-align: center;
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+    
+    .quick-action-card:hover {
+        border-color: var(--primary-color);
+        background-color: rgba(99, 102, 241, 0.05);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <!-- Dashboard Header -->
+    <div class="dashboard-header">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <h1 class="display-6 fw-bold mb-2">Welcome back, {{ user.get_full_name|default:user.email }}!</h1>
+                <p class="mb-0 opacity-90">Manage your API tokens, view your orders, and access developer tools.</p>
+            </div>
+            <div class="col-lg-4 text-end">
+                <div class="d-flex justify-content-end gap-2">
+                    <a href="{% url 'accounts:profile' %}" class="btn btn-light">
+                        <i class="fas fa-user"></i> Profile
+                    </a>
+                    <a href="{% url 'products:product_list' %}" class="btn btn-outline-light">
+                        <i class="fas fa-shopping-cart"></i> Shop
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stats Overview -->
+    <div class="row mb-4">
+        <div class="col-lg-3 col-md-6 mb-3">
+            <div class="stat-card dashboard-card">
+                <i class="fas fa-key fa-2x mb-3" style="color: var(--primary-color);"></i>
+                <div class="stat-number">{{ active_token_count }}</div>
+                <div class="stat-label">Active API Tokens</div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-3">
+            <div class="stat-card dashboard-card">
+                <i class="fas fa-clock fa-2x mb-3" style="color: #f59e0b;"></i>
+                <div class="stat-number">{{ expired_token_count }}</div>
+                <div class="stat-label">Expired Tokens</div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-3">
+            <div class="stat-card dashboard-card">
+                <i class="fas fa-shopping-bag fa-2x mb-3" style="color: #10b981;"></i>
+                <div class="stat-number">0</div>
+                <div class="stat-label">Orders This Month</div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-3">
+            <div class="stat-card dashboard-card">
+                <i class="fas fa-heart fa-2x mb-3" style="color: #ef4444;"></i>
+                <div class="stat-number">0</div>
+                <div class="stat-label">Wishlist Items</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- API Tokens Section -->
+        <div class="col-lg-8 mb-4">
+            <div class="card dashboard-card">
+                <div class="card-header bg-transparent border-0 pt-4 px-4">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h5 class="mb-1">API Tokens</h5>
+                            <p class="text-muted small mb-0">Manage your API access tokens for developer services</p>
+                        </div>
+                        <button class="btn create-token-btn" onclick="openCreateTokenModal()">
+                            <i class="fas fa-plus"></i> Create Token
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body p-0">
+                    {% if api_tokens %}
+                        <div class="table-responsive">
+                            <table class="table table-borderless mb-0">
+                                <thead class="bg-light">
+                                    <tr>
+                                        <th class="px-4 py-3 border-0">Name</th>
+                                        <th class="py-3 border-0">Status</th>
+                                        <th class="py-3 border-0">Expires</th>
+                                        <th class="py-3 border-0">Created</th>
+                                        <th class="py-3 border-0 text-end px-4">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for token in api_tokens %}
+                                    <tr class="token-row">
+                                        <td class="px-4 py-3">
+                                            <div class="fw-medium">{{ token.name }}</div>
+                                            <div class="token-key">{{ token.token|slice:":20" }}...</div>
+                                        </td>
+                                        <td class="py-3">
+                                            {% if token.is_expired %}
+                                                <span class="badge bg-danger">Expired</span>
+                                            {% elif not token.is_active %}
+                                                <span class="badge bg-secondary">Inactive</span>
+                                            {% else %}
+                                                <span class="badge bg-success">Active</span>
+                                            {% endif %}
+                                        </td>
+                                        <td class="py-3">
+                                            {% if token.expires_at %}
+                                                <div class="small">{{ token.expires_at|date:"M d, Y" }}</div>
+                                                <div class="small text-muted">{{ token.expires_at|timeuntil }}</div>
+                                            {% else %}
+                                                <div class="small text-muted">Never expires</div>
+                                            {% endif %}
+                                        </td>
+                                        <td class="py-3">
+                                            <div class="small">{{ token.created_at|date:"M d" }}</div>
+                                        </td>
+                                        <td class="py-3 px-4 text-end">
+                                            <div class="btn-group btn-group-sm">
+                                                <button class="btn btn-outline-primary" onclick="regenerateToken({{ token.id }}, '{{ token.name }}')">
+                                                    <i class="fas fa-refresh"></i>
+                                                </button>
+                                                <button class="btn btn-outline-danger" onclick="deleteToken({{ token.id }}, '{{ token.name }}')">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        {% if total_token_count > 10 %}
+                        <div class="px-4 py-3 bg-light">
+                            <a href="{% url 'accounts:api_tokens' %}" class="text-decoration-none">
+                                View all {{ total_token_count }} tokens <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                        {% endif %}
+                    {% else %}
+                        <div class="p-5 text-center">
+                            <i class="fas fa-key fa-3x text-muted mb-3"></i>
+                            <h5 class="text-muted">No API Tokens Yet</h5>
+                            <p class="text-muted mb-4">Create your first API token to start using our developer services.</p>
+                            <button class="btn create-token-btn" onclick="openCreateTokenModal()">
+                                <i class="fas fa-plus"></i> Create Your First Token
+                            </button>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="col-lg-4 mb-4">
+            <div class="card dashboard-card">
+                <div class="card-header bg-transparent border-0 pt-4 px-4">
+                    <h5 class="mb-1">Quick Actions</h5>
+                    <p class="text-muted small mb-0">Common tasks and shortcuts</p>
+                </div>
+                <div class="card-body">
+                    <!-- Browse API Services -->
+                    <div class="quick-action-card mb-3" onclick="location.href='{% url 'products:category_products' 'api-services' %}'">
+                        <i class="fas fa-code fa-2x text-primary mb-2"></i>
+                        <h6 class="mb-1">Browse APIs</h6>
+                        <small class="text-muted">Explore our API services</small>
+                    </div>
+                    
+                    <!-- View Documentation -->
+                    <div class="quick-action-card mb-3" onclick="alert('API Documentation coming soon!')">
+                        <i class="fas fa-book fa-2x text-info mb-2"></i>
+                        <h6 class="mb-1">API Docs</h6>
+                        <small class="text-muted">View API documentation</small>
+                    </div>
+                    
+                    <!-- Support -->
+                    <div class="quick-action-card" onclick="alert('Support system coming soon!')">
+                        <i class="fas fa-headset fa-2x text-success mb-2"></i>
+                        <h6 class="mb-1">Get Support</h6>
+                        <small class="text-muted">Contact our support team</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Activity (placeholder for future implementation) -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card dashboard-card">
+                <div class="card-header bg-transparent border-0 pt-4 px-4">
+                    <h5 class="mb-1">Recent Activity</h5>
+                    <p class="text-muted small mb-0">Your latest actions and updates</p>
+                </div>
+                <div class="card-body text-center py-5">
+                    <i class="fas fa-clock fa-3x text-muted mb-3"></i>
+                    <h6 class="text-muted">No recent activity</h6>
+                    <p class="text-muted small">Your recent orders, API calls, and account changes will appear here.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Create Token Modal -->
+<div class="modal fade" id="createTokenModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Create API Token</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form id="createTokenForm">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="tokenName" class="form-label">Token Name</label>
+                        <input type="text" class="form-control" id="tokenName" required
+                               placeholder="e.g., My App Token">
+                        <div class="form-text">Choose a descriptive name to identify this token.</div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="expiresInDays" class="form-label">Expires In</label>
+                        <select class="form-select" id="expiresInDays">
+                            <option value="">Never expires</option>
+                            <option value="7">1 Week</option>
+                            <option value="30" selected>1 Month</option>
+                            <option value="90">3 Months</option>
+                            <option value="180">6 Months</option>
+                            <option value="365">1 Year</option>
+                        </select>
+                        <div class="form-text">Choose when the token should expire for security.</div>
+                    </div>
+                    
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle"></i>
+                        <strong>Security Note:</strong> Your token will only be shown once. Make sure to copy and save it securely.
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-plus"></i> Create Token
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Show Token Modal -->
+<div class="modal fade" id="showTokenModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Token Created Successfully!</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-success">
+                    <i class="fas fa-check-circle"></i>
+                    Your API token has been created successfully.
+                </div>
+                
+                <div class="mb-3">
+                    <label class="form-label">Token Name</label>
+                    <div class="form-control" id="createdTokenName"></div>
+                </div>
+                
+                <div class="mb-3">
+                    <label class="form-label">API Token</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="createdTokenKey" readonly>
+                        <button class="btn btn-outline-primary" type="button" onclick="copyToken()">
+                            <i class="fas fa-copy"></i> Copy
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="alert alert-warning">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <strong>Important:</strong> This is the only time you'll see this token. Copy it now and store it securely.
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">I've Saved It</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+function openCreateTokenModal() {
+    const modal = new bootstrap.Modal(document.getElementById('createTokenModal'));
+    modal.show();
+}
+
+function copyToken() {
+    const tokenInput = document.getElementById('createdTokenKey');
+    tokenInput.select();
+    document.execCommand('copy');
+    
+    // Show feedback
+    const button = event.target.closest('button');
+    const originalText = button.innerHTML;
+    button.innerHTML = '<i class="fas fa-check"></i> Copied!';
+    button.classList.add('btn-success');
+    button.classList.remove('btn-outline-primary');
+    
+    setTimeout(() => {
+        button.innerHTML = originalText;
+        button.classList.remove('btn-success');
+        button.classList.add('btn-outline-primary');
+    }, 2000);
+}
+
+// Create Token Form Submission
+document.getElementById('createTokenForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const expiresInDays = document.getElementById('expiresInDays').value;
+    const formData = {
+        name: document.getElementById('tokenName').value,
+        expires_in_days: expiresInDays ? parseInt(expiresInDays) : null
+    };
+    
+    fetch('{% url "accounts:create_api_token" %}', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+        },
+        body: JSON.stringify(formData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // Hide create modal
+            const createModal = bootstrap.Modal.getInstance(document.getElementById('createTokenModal'));
+            createModal.hide();
+            
+            // Show token in display modal
+            document.getElementById('createdTokenName').textContent = data.token.name;
+            document.getElementById('createdTokenKey').value = data.token.key;
+            
+            const showModal = new bootstrap.Modal(document.getElementById('showTokenModal'));
+            showModal.show();
+            
+            // Reload page after modal is closed to show new token in list
+            document.getElementById('showTokenModal').addEventListener('hidden.bs.modal', function() {
+                location.reload();
+            }, { once: true });
+            
+        } else {
+            alert('Error: ' + data.error);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred while creating the token.');
+    });
+});
+
+function deleteToken(tokenId, tokenName) {
+    if (confirm(`Are you sure you want to delete the token "${tokenName}"? This action cannot be undone.`)) {
+        fetch(`/my-account/api-tokens/${tokenId}/delete/`, {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                location.reload();
+            } else {
+                alert('Error: ' + data.error);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('An error occurred while deleting the token.');
+        });
+    }
+}
+
+function regenerateToken(tokenId, tokenName) {
+    if (confirm(`Are you sure you want to regenerate the token "${tokenName}"? The old token will stop working immediately.`)) {
+        fetch(`/my-account/api-tokens/${tokenId}/regenerate/`, {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Show the new token
+                document.getElementById('createdTokenName').textContent = data.token.name;
+                document.getElementById('createdTokenKey').value = data.token.key;
+                
+                const showModal = new bootstrap.Modal(document.getElementById('showTokenModal'));
+                showModal.show();
+                
+                // Reload page after modal is closed
+                document.getElementById('showTokenModal').addEventListener('hidden.bs.modal', function() {
+                    location.reload();
+                }, { once: true });
+            } else {
+                alert('Error: ' + data.error);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('An error occurred while regenerating the token.');
+        });
+    }
+}
+
+// Add CSRF token to all AJAX requests
+function getCSRFToken() {
+    return document.querySelector('[name=csrfmiddlewaretoken]').value;
+}
+</script>
+{% endblock %}

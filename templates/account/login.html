@@ -1,0 +1,232 @@
+{% extends 'base.html' %}
+{% load socialaccount %}
+
+{% block title %}Login - TechMart{% endblock %}
+
+{% block extra_css %}
+<style>
+    .auth-container {
+        max-width: 450px;
+        margin: 2rem auto;
+    }
+    
+    .auth-card {
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        border: none;
+    }
+    
+    .auth-header {
+        background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+        color: white;
+        border-radius: 15px 15px 0 0;
+        padding: 2rem;
+        text-align: center;
+    }
+    
+    .auth-header h2 {
+        margin-bottom: 0.5rem;
+        font-weight: 700;
+    }
+    
+    .social-login {
+        margin-bottom: 2rem;
+    }
+    
+    .google-btn {
+        background: #4285f4;
+        border: none;
+        color: white;
+        padding: 12px 20px;
+        border-radius: 8px;
+        width: 100%;
+        font-size: 16px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+    }
+    
+    .google-btn:hover {
+        background: #3367d6;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(66, 133, 244, 0.4);
+        color: white;
+    }
+    
+    .divider {
+        position: relative;
+        text-align: center;
+        margin: 2rem 0;
+    }
+    
+    .divider::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: #e9ecef;
+    }
+    
+    .divider span {
+        background: white;
+        padding: 0 1rem;
+        color: #6c757d;
+        font-size: 0.9rem;
+    }
+    
+    .form-control:focus {
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 0.2rem rgba(99, 102, 241, 0.15);
+    }
+    
+    .btn-primary {
+        background: linear-gradient(135deg, var(--primary-color), #8b5cf6);
+        border: none;
+        padding: 12px;
+        border-radius: 8px;
+        font-weight: 500;
+    }
+    
+    .btn-primary:hover {
+        background: linear-gradient(135deg, #5855eb, #7c3aed);
+        transform: translateY(-1px);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="auth-container">
+        <div class="card auth-card">
+            <div class="auth-header">
+                <h2>Welcome Back!</h2>
+                <p class="mb-0">Sign in to your TechMart account</p>
+            </div>
+            
+            <div class="card-body p-4">
+                <!-- Social Login -->
+                <div class="social-login">
+                    {% get_providers as socialaccount_providers %}
+                    {% if socialaccount_providers %}
+                        {% for provider in socialaccount_providers %}
+                            {% if provider.id == "google" %}
+                                <a href="{% provider_login_url 'google' %}" class="google-btn text-decoration-none">
+                                    <svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+                                        <path fill="#FFC107" d="M43.6 20H24v8.8h11.2c-0.5 2.7-2.1 5-4.4 6.6v5.4h7.1C42.2 36.8 43.6 29.2 43.6 20z"/>
+                                        <path fill="#FF3D00" d="M24 44c5.9 0 10.9-2 14.5-5.4l-7.1-5.4c-2 1.3-4.5 2.1-7.4 2.1-5.7 0-10.5-3.9-12.2-9.1H4.4v5.6C8 38.1 15.5 44 24 44z"/>
+                                        <path fill="#4CAF50" d="M11.8 26.2c-0.4-1.3-0.7-2.7-0.7-4.2s0.3-2.9 0.7-4.2V12.2H4.4C2.9 15.2 2 18.5 2 22s0.9 6.8 2.4 9.8L11.8 26.2z"/>
+                                        <path fill="#1976D2" d="M24 9.5c3.2 0 6.1 1.1 8.4 3.3l6.3-6.3C34.9 2.8 29.9 0 24 0 15.5 0 8 5.9 4.4 12.2l7.4 5.8C13.5 13.4 18.3 9.5 24 9.5z"/>
+                                    </svg>
+                                    Continue with Google
+                                </a>
+                            {% endif %}
+                        {% endfor %}
+                        
+                        <div class="divider">
+                            <span>or sign in with email</span>
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Login Form -->
+                <form method="post" action="{% url 'account_login' %}">
+                    {% csrf_token %}
+                    
+                    {% if form.non_field_errors %}
+                        <div class="alert alert-danger">
+                            {{ form.non_field_errors }}
+                        </div>
+                    {% endif %}
+                    
+                    <div class="mb-3">
+                        <label for="id_login" class="form-label">Email Address</label>
+                        <input type="email" class="form-control" id="id_login" name="login" 
+                               value="{{ form.login.value|default_if_none:'' }}" required>
+                        {% if form.login.errors %}
+                            <div class="text-danger small mt-1">{{ form.login.errors }}</div>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="id_password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="id_password" name="password" required>
+                        {% if form.password.errors %}
+                            <div class="text-danger small mt-1">{{ form.password.errors }}</div>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="id_remember" name="remember">
+                        <label class="form-check-label" for="id_remember">
+                            Keep me signed in
+                        </label>
+                    </div>
+                    
+                    {% if redirect_field_value %}
+                        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}">
+                    {% endif %}
+                    
+                    <button type="submit" class="btn btn-primary w-100 mb-3">
+                        <i class="fas fa-sign-in-alt"></i> Sign In
+                    </button>
+                </form>
+
+                <!-- Links -->
+                <div class="text-center">
+                    <p class="mb-2">
+                        <a href="{% url 'account_reset_password' %}" class="text-decoration-none">
+                            Forgot your password?
+                        </a>
+                    </p>
+                    <p class="text-muted small">
+                        Don't have an account? 
+                        <a href="{% url 'account_signup' %}{% if redirect_field_value %}?{{ redirect_field_name }}={{ redirect_field_value }}{% endif %}" class="text-decoration-none fw-bold">
+                            Create one here
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Features -->
+        <div class="row mt-4 text-center">
+            <div class="col-4">
+                <div class="p-3">
+                    <i class="fas fa-shopping-cart fa-2x text-primary mb-2"></i>
+                    <div class="small text-muted">Easy Shopping</div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="p-3">
+                    <i class="fas fa-code fa-2x text-info mb-2"></i>
+                    <div class="small text-muted">API Access</div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="p-3">
+                    <i class="fas fa-shield-alt fa-2x text-success mb-2"></i>
+                    <div class="small text-muted">Secure</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Focus on email field when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    const emailField = document.getElementById('id_login');
+    if (emailField) {
+        emailField.focus();
+    }
+});
+</script>
+{% endblock %}

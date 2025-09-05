@@ -1,0 +1,172 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Order Confirmation - TechMart{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    {% if order %}
+    <!-- Order Confirmation -->
+    <div class="row">
+        <div class="col-12">
+            <div class="text-center mb-5">
+                <i class="fas fa-check-circle text-success fa-4x mb-3"></i>
+                <h1 class="text-success">Payment Successful!</h1>
+                <p class="lead">Thank you for your order. Your payment has been processed successfully.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <div class="card">
+                <div class="card-header bg-success text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-receipt"></i> Order Details
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <!-- Order Information -->
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <h6>Order Number</h6>
+                            <p class="fw-bold">{{ order.order_number }}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>Order Date</h6>
+                            <p>{{ order.created_at|date:"F d, Y \a\t H:i" }}</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Order Items -->
+                    <div class="mb-4">
+                        <h6>Items Ordered</h6>
+                        <div class="table-responsive">
+                            <table class="table table-sm">
+                                <thead>
+                                    <tr>
+                                        <th>Product</th>
+                                        <th class="text-center">Quantity</th>
+                                        <th class="text-end">Price</th>
+                                        <th class="text-end">Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for item in order.items.all %}
+                                    <tr>
+                                        <td>
+                                            <strong>{{ item.product_name }}</strong>
+                                            {% if item.product_sku %}
+                                            <br><small class="text-muted">SKU: {{ item.product_sku }}</small>
+                                            {% endif %}
+                                        </td>
+                                        <td class="text-center">{{ item.quantity }}</td>
+                                        <td class="text-end">${{ item.unit_price }}</td>
+                                        <td class="text-end">${{ item.total_price }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="3" class="text-end"><strong>Subtotal:</strong></td>
+                                        <td class="text-end"><strong>${{ order.subtotal }}</strong></td>
+                                    </tr>
+                                    {% if order.tax_amount > 0 %}
+                                    <tr>
+                                        <td colspan="3" class="text-end">Tax:</td>
+                                        <td class="text-end">${{ order.tax_amount }}</td>
+                                    </tr>
+                                    {% endif %}
+                                    {% if order.shipping_amount > 0 %}
+                                    <tr>
+                                        <td colspan="3" class="text-end">Shipping:</td>
+                                        <td class="text-end">${{ order.shipping_amount }}</td>
+                                    </tr>
+                                    {% else %}
+                                    <tr>
+                                        <td colspan="3" class="text-end">Shipping:</td>
+                                        <td class="text-end text-success">Free</td>
+                                    </tr>
+                                    {% endif %}
+                                    <tr class="border-top">
+                                        <td colspan="3" class="text-end"><strong>Total:</strong></td>
+                                        <td class="text-end"><strong class="text-success">${{ order.total_amount }}</strong></td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <!-- Billing Information -->
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6>Billing Information</h6>
+                            <address>
+                                {{ order.billing_first_name }} {{ order.billing_last_name }}<br>
+                                {{ order.billing_address_line1 }}<br>
+                                {% if order.billing_address_line2 %}
+                                {{ order.billing_address_line2 }}<br>
+                                {% endif %}
+                                {{ order.billing_city }}, {{ order.billing_state }} {{ order.billing_postal_code }}<br>
+                                {{ order.billing_country }}<br>
+                                <strong>Email:</strong> {{ order.billing_email }}
+                                {% if order.billing_phone %}
+                                <br><strong>Phone:</strong> {{ order.billing_phone }}
+                                {% endif %}
+                            </address>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>Payment Information</h6>
+                            <p>
+                                <i class="fas fa-credit-card text-success"></i> 
+                                Payment processed successfully<br>
+                                <small class="text-muted">
+                                    Payment ID: {{ order.stripe_payment_intent_id|slice:":20" }}...
+                                </small>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Action Buttons -->
+            <div class="text-center mt-4">
+                <div class="btn-group" role="group">
+                    <a href="{% url 'products:product_list' %}" class="btn btn-primary">
+                        <i class="fas fa-shopping-bag"></i> Continue Shopping
+                    </a>
+                    <a href="{% url 'orders:order_list' %}" class="btn btn-outline-primary">
+                        <i class="fas fa-list"></i> View All Orders
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Order Status -->
+            <div class="alert alert-info mt-4">
+                <h6><i class="fas fa-info-circle"></i> What's Next?</h6>
+                <ul class="mb-0">
+                    <li>You will receive a confirmation email shortly</li>
+                    <li>Your order is being processed and will be shipped soon</li>
+                    <li>You can track your order status in <a href="{% url 'orders:order_list' %}">My Orders</a></li>
+                    <li>For any questions, please contact our support team</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    {% else %}
+    <!-- Order Not Found -->
+    <div class="row">
+        <div class="col-12">
+            <div class="alert alert-warning text-center">
+                <h4><i class="fas fa-exclamation-triangle"></i> Order Not Found</h4>
+                <p>The requested order could not be found or you don't have permission to view it.</p>
+                <a href="{% url 'orders:order_list' %}" class="btn btn-primary">
+                    <i class="fas fa-list"></i> View Your Orders
+                </a>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

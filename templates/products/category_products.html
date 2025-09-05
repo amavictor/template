@@ -1,0 +1,438 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ category.name }} - TechMart{% endblock %}
+
+{% block extra_css %}
+<style>
+    .category-hero {
+        background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+        color: white;
+        padding: 3rem 0;
+        margin-bottom: 2rem;
+    }
+    
+    .category-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Category Hero Section -->
+<section class="category-hero">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <div class="text-center text-lg-start">
+                    {% if category.slug == 'electronics' %}
+                        <i class="fas fa-mobile-alt category-icon"></i>
+                    {% elif category.slug == 'fashion-clothing' %}
+                        <i class="fas fa-tshirt category-icon"></i>
+                    {% elif category.slug == 'home-garden' %}
+                        <i class="fas fa-home category-icon"></i>
+                    {% elif category.slug == 'api-services' %}
+                        <i class="fas fa-code category-icon"></i>
+                    {% else %}
+                        <i class="fas fa-tag category-icon"></i>
+                    {% endif %}
+                    <h1 class="display-4 fw-bold mb-3">{{ category.name }}</h1>
+                    <p class="lead">{{ category.description }}</p>
+                </div>
+            </div>
+            <div class="col-lg-4 text-center">
+                <div class="bg-white bg-opacity-10 rounded-circle p-4 d-inline-block">
+                    <span class="display-4 fw-bold">{{ products.count }}</span>
+                    <div class="small">Product{{ products.count|pluralize }} Available</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container">
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'home' %}" class="text-decoration-none">Home</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'products:product_list' %}" class="text-decoration-none">Products</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ category.name }}</li>
+        </ol>
+    </nav>
+
+    <div class="row">
+        <!-- Quick Filters Sidebar -->
+        <div class="col-lg-3 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h6 class="mb-0"><i class="fas fa-filter"></i> Quick Filters</h6>
+                </div>
+                <div class="card-body">
+                    <!-- Price Range -->
+                    <div class="mb-4">
+                        <h6>Price Range</h6>
+                        <form method="get">
+                            <div class="row">
+                                <div class="col-6">
+                                    <input type="number" name="min_price" class="form-control form-control-sm" 
+                                           placeholder="Min $" value="{{ request.GET.min_price }}">
+                                </div>
+                                <div class="col-6">
+                                    <input type="number" name="max_price" class="form-control form-control-sm" 
+                                           placeholder="Max $" value="{{ request.GET.max_price }}">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-sm w-100 mt-2">Apply</button>
+                        </form>
+                    </div>
+
+                    <!-- Sort Options -->
+                    <div class="mb-4">
+                        <h6>Sort By</h6>
+                        <form method="get">
+                            {% for key, value in request.GET.items %}
+                                {% if key != 'sort' %}
+                                    <input type="hidden" name="{{ key }}" value="{{ value }}">
+                                {% endif %}
+                            {% endfor %}
+                            <select name="sort" class="form-select form-select-sm" onchange="this.form.submit()">
+                                <option value="-created_at" {% if request.GET.sort == '-created_at' or not request.GET.sort %}selected{% endif %}>
+                                    Newest First
+                                </option>
+                                <option value="name" {% if request.GET.sort == 'name' %}selected{% endif %}>
+                                    Name A-Z
+                                </option>
+                                <option value="-name" {% if request.GET.sort == '-name' %}selected{% endif %}>
+                                    Name Z-A
+                                </option>
+                                <option value="price" {% if request.GET.sort == 'price' %}selected{% endif %}>
+                                    Price Low-High
+                                </option>
+                                <option value="-price" {% if request.GET.sort == '-price' %}selected{% endif %}>
+                                    Price High-Low
+                                </option>
+                            </select>
+                        </form>
+                    </div>
+
+                    <!-- Category Info -->
+                    {% if category.slug == 'api-services' %}
+                    <div class="bg-info bg-opacity-10 p-3 rounded">
+                        <h6><i class="fas fa-info-circle text-info"></i> API Services</h6>
+                        <small class="text-muted">
+                            Get access to powerful APIs with authentication tokens, 
+                            comprehensive documentation, and reliable uptime.
+                        </small>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Products Grid -->
+        <div class="col-lg-9">
+            <!-- Results Header -->
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div>
+                    <h5 class="mb-0">{{ products.count }} product{{ products.count|pluralize }} in {{ category.name }}</h5>
+                </div>
+                <div>
+                    <a href="{% url 'products:product_list' %}" class="btn btn-outline-secondary btn-sm">
+                        <i class="fas fa-th"></i> View All Products
+                    </a>
+                </div>
+            </div>
+
+            <!-- Products Grid -->
+            {% if products %}
+                <div class="row">
+                    {% for product in products %}
+                    <div class="col-md-6 col-xl-4 mb-4">
+                        <div class="card product-card h-100 shadow-sm">
+                            <div class="position-relative">
+                                {% if product.main_image %}
+                                    <img src="{{ product.main_image.url }}" class="card-img-top" 
+                                         alt="{{ product.name }}" style="height: 220px; object-fit: cover;">
+                                {% else %}
+                                    <img src="https://via.placeholder.com/300x220/6366f1/ffffff?text={{ product.name|truncatechars:8 }}" 
+                                         class="card-img-top" alt="{{ product.name }}">
+                                {% endif %}
+                                
+                                <!-- Product badges -->
+                                <div class="position-absolute top-0 start-0 m-2">
+                                    <span class="badge bg-primary">
+                                        {{ product.get_product_type_display }}
+                                    </span>
+                                </div>
+                                
+                                {% if product.get_discount_percentage %}
+                                <div class="position-absolute top-0 end-0 m-2">
+                                    <span class="badge bg-danger">{{ product.get_discount_percentage }}% OFF</span>
+                                </div>
+                                {% endif %}
+
+                                {% if user.is_authenticated %}
+                                <!-- Wishlist Button -->
+                                <div class="position-absolute bottom-0 end-0 m-2">
+                                    <button class="btn btn-sm btn-light rounded-circle add-to-wishlist" 
+                                            data-product-id="{{ product.id }}" title="Add to Wishlist">
+                                        <i class="fas fa-heart"></i>
+                                    </button>
+                                </div>
+                                {% endif %}
+                            </div>
+                            
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">{{ product.name }}</h5>
+                                <p class="card-text text-muted small flex-grow-1">
+                                    {{ product.short_description|truncatechars:80 }}
+                                </p>
+                                
+                                <!-- API Service Features -->
+                                {% if product.product_type == 'data_subscription' %}
+                                <div class="mb-2">
+                                    <small class="text-info">
+                                        <i class="fas fa-code"></i> API Service
+                                        {% if 'basic' in product.name|lower %}
+                                            • 1K calls/month
+                                        {% elif 'professional' in product.name|lower %}
+                                            • 10K calls/month  
+                                        {% elif 'enterprise' in product.name|lower %}
+                                            • 100K calls/month
+                                        {% endif %}
+                                    </small>
+                                </div>
+                                {% endif %}
+                                
+                                <div class="mt-auto">
+                                    <!-- Price -->
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <div class="price">
+                                            {% if product.compare_at_price %}
+                                                <span class="text-muted text-decoration-line-through small">
+                                                    ${{ product.compare_at_price }}
+                                                </span>
+                                            {% endif %}
+                                            <div class="h6 text-primary mb-0">
+                                                ${{ product.price }}
+                                                {% if product.product_type == 'data_subscription' %}
+                                                    <small class="text-muted">/month</small>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Stock Status -->
+                                        {% if product.product_type != 'data_subscription' %}
+                                            {% if not product.is_in_stock %}
+                                                <span class="badge bg-danger">Out of Stock</span>
+                                            {% elif product.is_low_stock %}
+                                                <span class="badge bg-warning">Low Stock</span>
+                                            {% else %}
+                                                <span class="badge bg-success">In Stock</span>
+                                            {% endif %}
+                                        {% else %}
+                                            <span class="badge bg-info">Available</span>
+                                        {% endif %}
+                                    </div>
+                                    
+                                    <!-- Action Buttons -->
+                                    <div class="d-grid gap-2">
+                                        <a href="{{ product.get_absolute_url }}" class="btn btn-outline-primary btn-sm">
+                                            <i class="fas fa-eye"></i> View Details
+                                        </a>
+                                        {% if product.is_in_stock and user.is_authenticated %}
+                                            {% if product.product_type == 'data_subscription' %}
+                                                <button class="btn btn-primary btn-sm subscribe-api" 
+                                                        data-product-id="{{ product.id }}">
+                                                    <i class="fas fa-code"></i> Subscribe
+                                                </button>
+                                            {% else %}
+                                                <button class="btn btn-primary btn-sm add-to-cart" 
+                                                        data-product-id="{{ product.id }}">
+                                                    <i class="fas fa-shopping-cart"></i> Add to Cart
+                                                </button>
+                                            {% endif %}
+                                        {% elif not user.is_authenticated %}
+                                            <a href="{% url 'auth:login' %}?next={{ request.path }}" class="btn btn-primary btn-sm">
+                                                Login to Purchase
+                                            </a>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <!-- Pagination -->
+                {% if is_paginated %}
+                <nav aria-label="Products pagination" class="mt-4">
+                    <ul class="pagination justify-content-center">
+                        {% if page_obj.has_previous %}
+                            <li class="page-item">
+                                <a class="page-link" href="?{% for key, value in request.GET.items %}{% if key != 'page' %}{{ key }}={{ value }}&{% endif %}{% endfor %}page=1">
+                                    First
+                                </a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="?{% for key, value in request.GET.items %}{% if key != 'page' %}{{ key }}={{ value }}&{% endif %}{% endfor %}page={{ page_obj.previous_page_number }}">
+                                    Previous
+                                </a>
+                            </li>
+                        {% endif %}
+                        
+                        <li class="page-item active">
+                            <span class="page-link">{{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+                        </li>
+                        
+                        {% if page_obj.has_next %}
+                            <li class="page-item">
+                                <a class="page-link" href="?{% for key, value in request.GET.items %}{% if key != 'page' %}{{ key }}={{ value }}&{% endif %}{% endfor %}page={{ page_obj.next_page_number }}">
+                                    Next
+                                </a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="?{% for key, value in request.GET.items %}{% if key != 'page' %}{{ key }}={{ value }}&{% endif %}{% endfor %}page={{ page_obj.paginator.num_pages }}">
+                                    Last
+                                </a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </nav>
+                {% endif %}
+
+            {% else %}
+                <!-- No Products Found -->
+                <div class="text-center py-5">
+                    {% if category.slug == 'electronics' %}
+                        <i class="fas fa-mobile-alt fa-3x text-muted mb-3"></i>
+                    {% elif category.slug == 'fashion-clothing' %}
+                        <i class="fas fa-tshirt fa-3x text-muted mb-3"></i>
+                    {% elif category.slug == 'home-garden' %}
+                        <i class="fas fa-home fa-3x text-muted mb-3"></i>
+                    {% elif category.slug == 'api-services' %}
+                        <i class="fas fa-code fa-3x text-muted mb-3"></i>
+                    {% else %}
+                        <i class="fas fa-box-open fa-3x text-muted mb-3"></i>
+                    {% endif %}
+                    
+                    <h3 class="text-muted">No products found in {{ category.name }}</h3>
+                    <p class="lead text-muted">Check back soon for new products in this category.</p>
+                    <a href="{% url 'products:product_list' %}" class="btn btn-primary">
+                        Browse All Products
+                    </a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Category Features (for API Services) -->
+    {% if category.slug == 'api-services' and products %}
+    <section class="mt-5 py-4 bg-light rounded">
+        <div class="container">
+            <div class="text-center mb-4">
+                <h3>Why Choose Our API Services?</h3>
+                <p class="text-muted">Professional APIs designed for developers and businesses</p>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-3 text-center mb-3">
+                    <div class="mb-2">
+                        <i class="fas fa-shield-alt fa-2x text-primary"></i>
+                    </div>
+                    <h6>Secure & Reliable</h6>
+                    <small class="text-muted">99.9% uptime with enterprise-grade security</small>
+                </div>
+                
+                <div class="col-md-3 text-center mb-3">
+                    <div class="mb-2">
+                        <i class="fas fa-book fa-2x text-info"></i>
+                    </div>
+                    <h6>Complete Documentation</h6>
+                    <small class="text-muted">Comprehensive guides and code examples</small>
+                </div>
+                
+                <div class="col-md-3 text-center mb-3">
+                    <div class="mb-2">
+                        <i class="fas fa-key fa-2x text-success"></i>
+                    </div>
+                    <h6>Easy Authentication</h6>
+                    <small class="text-muted">Simple token-based authentication</small>
+                </div>
+                
+                <div class="col-md-3 text-center mb-3">
+                    <div class="mb-2">
+                        <i class="fas fa-headset fa-2x text-warning"></i>
+                    </div>
+                    <h6>Developer Support</h6>
+                    <small class="text-muted">24/7 support for API integration</small>
+                </div>
+            </div>
+        </div>
+    </section>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Add to Cart functionality
+    const addToCartButtons = document.querySelectorAll('.add-to-cart');
+    addToCartButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const productId = this.getAttribute('data-product-id');
+            
+            // TODO: Implement AJAX add to cart
+            console.log('Adding to cart:', productId);
+            
+            // Visual feedback
+            this.innerHTML = '<i class="fas fa-check"></i> Added!';
+            this.classList.add('btn-success');
+            this.classList.remove('btn-primary');
+            
+            setTimeout(() => {
+                this.innerHTML = '<i class="fas fa-shopping-cart"></i> Add to Cart';
+                this.classList.add('btn-primary');
+                this.classList.remove('btn-success');
+            }, 2000);
+        });
+    });
+    
+    // Subscribe to API functionality
+    const subscribeButtons = document.querySelectorAll('.subscribe-api');
+    subscribeButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const productId = this.getAttribute('data-product-id');
+            
+            // TODO: Implement API subscription
+            console.log('Subscribing to API:', productId);
+            
+            // Visual feedback
+            this.innerHTML = '<i class="fas fa-check"></i> Subscribed!';
+            this.classList.add('btn-success');
+            this.classList.remove('btn-primary');
+        });
+    });
+    
+    // Add to Wishlist functionality
+    const wishlistButtons = document.querySelectorAll('.add-to-wishlist');
+    wishlistButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const productId = this.getAttribute('data-product-id');
+            
+            // TODO: Implement AJAX add to wishlist
+            console.log('Adding to wishlist:', productId);
+            
+            // Visual feedback
+            const icon = this.querySelector('i');
+            icon.classList.remove('fas');
+            icon.classList.add('fas', 'text-danger');
+            this.title = 'Added to Wishlist';
+            this.disabled = true;
+        });
+    });
+});
+</script>
+{% endblock %}

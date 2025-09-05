@@ -1,0 +1,290 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Shopping Cart - TechMart{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="mb-4">
+                <i class="fas fa-shopping-cart"></i> Shopping Cart
+                {% if total_items %}
+                    <span class="badge bg-primary">{{ total_items }} item{{ total_items|pluralize }}</span>
+                {% endif %}
+            </h1>
+        </div>
+    </div>
+
+    {% if not user.is_authenticated %}
+    <!-- Not logged in message -->
+    <div class="row">
+        <div class="col-12">
+            <div class="alert alert-info text-center">
+                <h4><i class="fas fa-info-circle"></i> Please Log In</h4>
+                <p>You need to be logged in to view and manage your shopping cart.</p>
+                <a href="{% url 'auth:login' %}" class="btn btn-primary">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </a>
+                <a href="{% url 'auth:signup' %}" class="btn btn-outline-primary">
+                    <i class="fas fa-user-plus"></i> Sign Up
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    {% elif cart_items %}
+    <!-- Cart has items -->
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Cart Items</h5>
+                </div>
+                <div class="card-body p-0">
+                    {% for item in cart_items %}
+                    <div class="cart-item p-3 border-bottom" data-product-id="{{ item.product.id }}">
+                        <div class="row align-items-center">
+                            <div class="col-md-2">
+                                <a href="{% url 'products:product_detail' item.product.pk %}" class="text-decoration-none">
+                                    {% if item.product.main_image %}
+                                        <img src="{{ item.product.main_image.url }}" alt="{{ item.product.name }}" 
+                                             class="img-fluid rounded" style="height: 80px; object-fit: cover;">
+                                    {% else %}
+                                        <div class="bg-light rounded d-flex align-items-center justify-content-center" 
+                                             style="height: 80px;">
+                                            <i class="fas fa-image text-muted"></i>
+                                        </div>
+                                    {% endif %}
+                                </a>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <h6 class="mb-1">
+                                    <a href="{% url 'products:product_detail' item.product.pk %}" class="text-decoration-none text-dark">
+                                        {{ item.product.name }}
+                                    </a>
+                                </h6>
+                                <p class="text-muted small mb-0">
+                                    {{ item.product.short_description|truncatewords:10 }}
+                                </p>
+                                <small class="text-muted">SKU: {{ item.product.sku|default:"N/A" }}</small>
+                                <div class="mt-1">
+                                    <a href="{% url 'products:product_detail' item.product.pk %}" class="btn btn-sm btn-outline-primary">
+                                        <i class="fas fa-eye"></i> View Details
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-2">
+                                <label class="form-label small">Quantity</label>
+                                <div class="input-group input-group-sm">
+                                    <button class="btn btn-outline-secondary update-quantity" 
+                                            data-action="decrease" type="button">-</button>
+                                    <input type="number" class="form-control text-center quantity-input" 
+                                           value="{{ item.quantity }}" min="1" max="99">
+                                    <button class="btn btn-outline-secondary update-quantity" 
+                                            data-action="increase" type="button">+</button>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-2 text-center">
+                                <div class="fw-bold">${{ item.product.price }}</div>
+                                <small class="text-muted">each</small>
+                            </div>
+                            
+                            <div class="col-md-2 text-end">
+                                <div class="fw-bold text-primary item-total">
+                                    ${{ item.get_total_price }}
+                                </div>
+                                <button class="btn btn-sm btn-outline-danger remove-item mt-1" 
+                                        data-product-id="{{ item.product.id }}">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Order Summary</h5>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>Subtotal ({{ total_items }} item{{ total_items|pluralize }}):</span>
+                        <span id="cart-subtotal">${{ total_price }}</span>
+                    </div>
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>Shipping:</span>
+                        <span class="text-success">Free</span>
+                    </div>
+                    <hr>
+                    <div class="d-flex justify-content-between fw-bold h5">
+                        <span>Total:</span>
+                        <span id="cart-total" class="text-primary">${{ total_price }}</span>
+                    </div>
+                    
+                    <div class="d-grid gap-2 mt-4">
+                        <form method="post" action="{% url 'orders:checkout' %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-primary btn-lg w-100">
+                                <i class="fas fa-credit-card"></i> Proceed to Checkout
+                            </button>
+                        </form>
+                        <a href="{% url 'products:product_list' %}" class="btn btn-outline-primary">
+                            <i class="fas fa-arrow-left"></i> Continue Shopping
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    {% else %}
+    <!-- Empty cart -->
+    <div class="row">
+        <div class="col-12">
+            <div class="text-center py-5">
+                <i class="fas fa-shopping-cart fa-4x text-muted mb-4"></i>
+                <h3>Your cart is empty</h3>
+                <p class="text-muted">Add some products to your cart to see them here.</p>
+                <a href="{% url 'products:product_list' %}" class="btn btn-primary">
+                    <i class="fas fa-shopping-bag"></i> Start Shopping
+                </a>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Update quantity buttons
+    document.querySelectorAll('.update-quantity').forEach(button => {
+        button.addEventListener('click', function() {
+            const cartItem = this.closest('.cart-item');
+            const productId = cartItem.dataset.productId;
+            const quantityInput = cartItem.querySelector('.quantity-input');
+            const action = this.dataset.action;
+            
+            let newQuantity = parseInt(quantityInput.value);
+            if (action === 'increase') {
+                newQuantity++;
+            } else if (action === 'decrease' && newQuantity > 1) {
+                newQuantity--;
+            }
+            
+            quantityInput.value = newQuantity;
+            updateCartQuantity(productId, newQuantity, cartItem);
+        });
+    });
+    
+    // Direct quantity input change
+    document.querySelectorAll('.quantity-input').forEach(input => {
+        input.addEventListener('change', function() {
+            const cartItem = this.closest('.cart-item');
+            const productId = cartItem.dataset.productId;
+            const quantity = Math.max(1, parseInt(this.value) || 1);
+            this.value = quantity;
+            updateCartQuantity(productId, quantity, cartItem);
+        });
+    });
+    
+    // Remove item buttons
+    document.querySelectorAll('.remove-item').forEach(button => {
+        button.addEventListener('click', function() {
+            const productId = this.dataset.productId;
+            removeFromCart(productId);
+        });
+    });
+    
+    function updateCartQuantity(productId, quantity, cartItem) {
+        const formData = new FormData();
+        formData.append('product_id', productId);
+        formData.append('quantity', quantity);
+        formData.append('csrfmiddlewaretoken', '{{ csrf_token }}');
+        
+        fetch('{% url "cart:update_cart" %}', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Update item total
+                const itemTotal = cartItem.querySelector('.item-total');
+                itemTotal.textContent = '$' + data.item_total.toFixed(2);
+                
+                // Update cart totals
+                document.getElementById('cart-subtotal').textContent = '$' + data.total_price.toFixed(2);
+                document.getElementById('cart-total').textContent = '$' + data.total_price.toFixed(2);
+                
+                showAlert('success', 'Cart updated successfully');
+            } else {
+                showAlert('error', data.error || 'Failed to update cart');
+            }
+        })
+        .catch(error => {
+            showAlert('error', 'An error occurred while updating the cart');
+        });
+    }
+    
+    function removeFromCart(productId) {
+        const formData = new FormData();
+        formData.append('product_id', productId);
+        formData.append('csrfmiddlewaretoken', '{{ csrf_token }}');
+        
+        fetch('{% url "cart:remove_from_cart" %}', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Remove the item from DOM
+                const cartItem = document.querySelector(`[data-product-id="${productId}"]`);
+                cartItem.remove();
+                
+                // Update cart totals or show empty cart
+                if (data.cart_count === 0) {
+                    location.reload(); // Reload to show empty cart message
+                } else {
+                    document.getElementById('cart-subtotal').textContent = '$' + data.total_price.toFixed(2);
+                    document.getElementById('cart-total').textContent = '$' + data.total_price.toFixed(2);
+                }
+                
+                showAlert('success', data.message);
+            } else {
+                showAlert('error', data.error || 'Failed to remove item');
+            }
+        })
+        .catch(error => {
+            showAlert('error', 'An error occurred while removing the item');
+        });
+    }
+    
+    function showAlert(type, message) {
+        const alertClass = type === 'success' ? 'alert-success' : 'alert-danger';
+        const alertDiv = document.createElement('div');
+        alertDiv.className = `alert ${alertClass} alert-dismissible fade show`;
+        alertDiv.innerHTML = `
+            ${message}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        `;
+        document.querySelector('.container').prepend(alertDiv);
+        
+        // Auto dismiss after 3 seconds
+        setTimeout(() => {
+            alertDiv.remove();
+        }, 3000);
+    }
+});
+</script>
+{% endblock %}

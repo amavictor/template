@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block title %}Sign Out - TechMart{% endblock %}
+
+{% block extra_css %}
+<style>
+    .auth-container {
+        max-width: 400px;
+        margin: 3rem auto;
+    }
+    
+    .auth-card {
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        border: none;
+        text-align: center;
+    }
+    
+    .logout-icon {
+        font-size: 4rem;
+        color: var(--primary-color);
+        margin-bottom: 1rem;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="auth-container">
+        <div class="card auth-card">
+            <div class="card-body p-4">
+                <div class="logout-icon">
+                    <i class="fas fa-sign-out-alt"></i>
+                </div>
+                
+                <h3 class="mb-3">Sign Out</h3>
+                <p class="text-muted mb-4">Are you sure you want to sign out of your TechMart account?</p>
+                
+                <form method="post" action="{% url 'account_logout' %}">
+                    {% csrf_token %}
+                    {% if redirect_field_value %}
+                        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}">
+                    {% endif %}
+                    
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-outline-danger btn-lg">
+                            <i class="fas fa-sign-out-alt"></i> Yes, Sign Out
+                        </button>
+                        <a href="{% url 'home' %}" class="btn btn-primary btn-lg">
+                            <i class="fas fa-arrow-left"></i> Stay Signed In
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <div class="text-center mt-4">
+            <p class="text-muted small">
+                Thanks for using TechMart! We'll see you next time.
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}
