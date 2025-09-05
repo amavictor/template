@@ -1,0 +1,214 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Setup Two-Factor Authentication - TechMart{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white text-center">
+                    <h3><i class="fas fa-shield-alt"></i> Setup Two-Factor Authentication</h3>
+                    <p class="mb-0">Secure your account with Microsoft Authenticator</p>
+                </div>
+                <div class="card-body p-5">
+                    
+                    {% if not mfa_enabled %}
+                    <!-- Setup Instructions -->
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5><i class="fas fa-mobile-alt text-primary"></i> Step 1: Download Microsoft Authenticator</h5>
+                            <p class="text-muted mb-3">
+                                Download Microsoft Authenticator from your app store:
+                            </p>
+                            <div class="mb-4">
+                                <a href="https://apps.apple.com/app/microsoft-authenticator/id983156458" target="_blank" class="btn btn-outline-dark btn-sm me-2">
+                                    <i class="fab fa-apple"></i> App Store
+                                </a>
+                                <a href="https://play.google.com/store/apps/details?id=com.azure.authenticator" target="_blank" class="btn btn-outline-success btn-sm">
+                                    <i class="fab fa-google-play"></i> Google Play
+                                </a>
+                            </div>
+                            
+                            <h5><i class="fas fa-qrcode text-primary"></i> Step 2: Scan QR Code</h5>
+                            <ol class="text-muted">
+                                <li>Open Microsoft Authenticator</li>
+                                <li>Tap the <strong>"+"</strong> button</li>
+                                <li>Select <strong>"Other account"</strong></li>
+                                <li>Scan this QR code</li>
+                            </ol>
+                        </div>
+                        
+                        <div class="col-md-6 text-center">
+                            <div class="mb-4">
+                                <div class="border rounded p-3 bg-light">
+                                    <img src="data:image/png;base64,{{ qr_code_base64 }}" alt="QR Code" class="img-fluid" style="max-width: 200px;">
+                                </div>
+                                <small class="text-muted">Scan with Microsoft Authenticator</small>
+                            </div>
+                            
+                            <div class="alert alert-info">
+                                <h6><i class="fas fa-key"></i> Manual Setup</h6>
+                                <p class="mb-1">Can't scan? Enter this key manually:</p>
+                                <code>{{ secret_key }}</code>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <hr class="my-4">
+                    
+                    <!-- Verification Form -->
+                    <div class="text-center">
+                        <h5><i class="fas fa-check-circle text-primary"></i> Step 3: Verify Setup</h5>
+                        <p class="text-muted mb-4">Enter the 6-digit code from Microsoft Authenticator to complete setup:</p>
+                        
+                        <form method="post" action="{% url 'auth:mfa_verify_setup' %}">
+                            {% csrf_token %}
+                            <div class="row justify-content-center">
+                                <div class="col-md-4">
+                                    <div class="form-group mb-3">
+                                        <input type="text" 
+                                               class="form-control form-control-lg text-center" 
+                                               name="verification_code" 
+                                               placeholder="000000" 
+                                               maxlength="6" 
+                                               pattern="[0-9]{6}"
+                                               style="font-size: 1.8rem; letter-spacing: 0.5rem;"
+                                               autocomplete="off"
+                                               inputmode="numeric"
+                                               required>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary btn-lg w-100">
+                                        <i class="fas fa-check"></i> Verify & Enable MFA
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    {% else %}
+                    <!-- MFA Already Enabled -->
+                    <div class="text-center">
+                        <div class="alert alert-success">
+                            <h4><i class="fas fa-check-circle"></i> MFA is Enabled</h4>
+                            <p class="mb-0">Two-factor authentication is already active on your account.</p>
+                        </div>
+                        
+                        <div class="mt-4">
+                            <a href="{% url 'home' %}" class="btn btn-primary me-2">
+                                <i class="fas fa-home"></i> Go to Dashboard
+                            </a>
+                            
+                            <button type="button" class="btn btn-warning me-2" data-bs-toggle="modal" data-bs-target="#regenerateCodesModal">
+                                <i class="fas fa-sync"></i> Regenerate Backup Codes
+                            </button>
+                            
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#disableMfaModal">
+                                <i class="fas fa-times"></i> Disable MFA
+                            </button>
+                        </div>
+                    </div>
+                    {% endif %}
+                    
+                </div>
+            </div>
+            
+            {% if mfa_enabled %}
+            <!-- Security Tips -->
+            <div class="card mt-4">
+                <div class="card-header">
+                    <h5><i class="fas fa-lightbulb text-warning"></i> Security Tips</h5>
+                </div>
+                <div class="card-body">
+                    <ul class="mb-0">
+                        <li><strong>Keep backup codes safe:</strong> Store them in a secure location separate from your phone</li>
+                        <li><strong>Don't share codes:</strong> Never share your 6-digit codes with anyone</li>
+                        <li><strong>Use a secure device:</strong> Only install Microsoft Authenticator on trusted devices</li>
+                        <li><strong>Regular backups:</strong> Consider backing up your authenticator app data</li>
+                    </ul>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<!-- Disable MFA Modal -->
+<div class="modal fade" id="disableMfaModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-danger">
+                    <i class="fas fa-exclamation-triangle"></i> Disable Two-Factor Authentication
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form method="post" action="{% url 'auth:mfa_disable' %}">
+                {% csrf_token %}
+                <div class="modal-body">
+                    <div class="alert alert-warning">
+                        <strong>Warning:</strong> Disabling MFA will make your account less secure.
+                    </div>
+                    <div class="form-group">
+                        <label for="disable-password" class="form-label">Confirm with your password:</label>
+                        <input type="password" class="form-control" id="disable-password" name="password" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-danger">Disable MFA</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Regenerate Backup Codes Modal -->
+<div class="modal fade" id="regenerateCodesModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    <i class="fas fa-sync"></i> Regenerate Backup Codes
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form method="post" action="{% url 'auth:mfa_regenerate_codes' %}">
+                {% csrf_token %}
+                <div class="modal-body">
+                    <div class="alert alert-info">
+                        <strong>Note:</strong> This will generate new backup codes and invalidate your current ones.
+                    </div>
+                    <div class="form-group">
+                        <label for="regen-password" class="form-label">Confirm with your password:</label>
+                        <input type="password" class="form-control" id="regen-password" name="password" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-warning">Generate New Codes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Auto-format the verification code input
+document.querySelector('input[name="verification_code"]').addEventListener('input', function(e) {
+    // Only allow numbers
+    e.target.value = e.target.value.replace(/\D/g, '');
+    
+    // Auto-submit when 6 digits are entered
+    if (e.target.value.length === 6) {
+        // Small delay to show the complete code
+        setTimeout(() => {
+            e.target.closest('form').submit();
+        }, 500);
+    }
+});
+</script>
+{% endblock %}

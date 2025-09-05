@@ -1,0 +1,198 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Two-Factor Authentication - TechMart{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white text-center">
+                    <h3><i class="fas fa-shield-alt"></i> Two-Factor Authentication</h3>
+                    <p class="mb-0">Enter your authentication code to continue</p>
+                </div>
+                <div class="card-body p-5">
+                    
+                    <div class="text-center mb-4">
+                        <i class="fas fa-mobile-alt fa-3x text-primary mb-3"></i>
+                        <h5>Open Microsoft Authenticator</h5>
+                        <p class="text-muted">Enter the 6-digit verification code from your authenticator app</p>
+                    </div>
+                    
+                    <!-- MFA Verification Form -->
+                    <form method="post">
+                        {% csrf_token %}
+                        
+                        <div class="form-group mb-4">
+                            <label for="verification_code" class="form-label text-center d-block">
+                                <strong>Verification Code</strong>
+                            </label>
+                            <input type="text" 
+                                   class="form-control form-control-lg text-center" 
+                                   id="verification_code"
+                                   name="verification_code" 
+                                   placeholder="000000" 
+                                   maxlength="6" 
+                                   pattern="[0-9]{6}"
+                                   style="font-size: 2rem; letter-spacing: 0.8rem;"
+                                   autocomplete="off"
+                                   inputmode="numeric"
+                                   autofocus>
+                            <div class="form-text text-center">
+                                The code changes every 30 seconds
+                            </div>
+                        </div>
+                        
+                        <div class="d-grid mb-3">
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                <i class="fas fa-sign-in-alt"></i> Verify & Login
+                            </button>
+                        </div>
+                    </form>
+                    
+                    <hr class="my-4">
+                    
+                    <!-- Backup Code Section -->
+                    <div class="text-center">
+                        <button type="button" class="btn btn-link text-muted" 
+                                onclick="toggleBackupCodeForm()">
+                            <i class="fas fa-key"></i> Use a backup code instead
+                        </button>
+                    </div>
+                    
+                    <!-- Backup Code Form (Hidden by default) -->
+                    <div id="backupCodeForm" style="display: none;">
+                        <form method="post">
+                            {% csrf_token %}
+                            <div class="form-group mb-3">
+                                <label for="backup_code" class="form-label">
+                                    <strong>Backup Code</strong>
+                                </label>
+                                <input type="text" 
+                                       class="form-control text-center" 
+                                       id="backup_code"
+                                       name="backup_code" 
+                                       placeholder="0000-0000" 
+                                       maxlength="9"
+                                       pattern="[0-9]{4}-[0-9]{4}"
+                                       style="font-size: 1.2rem; letter-spacing: 0.2rem;"
+                                       autocomplete="off">
+                                <div class="form-text">
+                                    Enter one of your 8-digit backup codes (format: 1234-5678)
+                                </div>
+                            </div>
+                            
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-warning">
+                                    <i class="fas fa-unlock"></i> Use Backup Code
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                </div>
+                <div class="card-footer text-center text-muted">
+                    <small>
+                        <i class="fas fa-info-circle"></i> 
+                        Having trouble? Contact support for assistance
+                    </small>
+                </div>
+            </div>
+            
+            <!-- Help Section -->
+            <div class="card mt-4">
+                <div class="card-header">
+                    <h6><i class="fas fa-question-circle"></i> Need Help?</h6>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6>Can't access your authenticator?</h6>
+                            <ul class="small text-muted">
+                                <li>Use a backup code above</li>
+                                <li>Make sure your device time is correct</li>
+                                <li>Try refreshing the app</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>Code not working?</h6>
+                            <ul class="small text-muted">
+                                <li>Wait for the next code (30 seconds)</li>
+                                <li>Check you're using the right account</li>
+                                <li>Ensure good internet connection</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-3">
+                <a href="{% url 'auth:login' %}" class="btn btn-outline-secondary">
+                    <i class="fas fa-arrow-left"></i> Back to Login
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Auto-format the verification code input
+document.getElementById('verification_code').addEventListener('input', function(e) {
+    // Only allow numbers
+    e.target.value = e.target.value.replace(/\D/g, '');
+    
+    // Auto-submit when 6 digits are entered
+    if (e.target.value.length === 6) {
+        // Small delay to show the complete code
+        setTimeout(() => {
+            e.target.closest('form').submit();
+        }, 500);
+    }
+});
+
+// Auto-format backup code input
+const backupCodeInput = document.getElementById('backup_code');
+if (backupCodeInput) {
+    backupCodeInput.addEventListener('input', function(e) {
+        let value = e.target.value.replace(/\D/g, ''); // Remove non-digits
+        
+        // Format as 1234-5678
+        if (value.length > 4) {
+            value = value.slice(0, 4) + '-' + value.slice(4, 8);
+        }
+        
+        e.target.value = value;
+    });
+}
+
+// Toggle backup code form
+function toggleBackupCodeForm() {
+    const form = document.getElementById('backupCodeForm');
+    if (form.style.display === 'none') {
+        form.style.display = 'block';
+        document.getElementById('backup_code').focus();
+    } else {
+        form.style.display = 'none';
+        document.getElementById('verification_code').focus();
+    }
+}
+
+// Countdown timer for code refresh
+let timeLeft = 30;
+function startCountdown() {
+    const timer = setInterval(() => {
+        timeLeft--;
+        if (timeLeft <= 0) {
+            timeLeft = 30;
+            // Optionally show a "New code available" message
+        }
+    }, 1000);
+}
+
+// Start countdown when page loads
+startCountdown();
+</script>
+{% endblock %}

@@ -46,15 +46,14 @@ class LoginView(TemplateView):
                 try:
                     profile = user.userprofile
                     if profile.mfa_enabled:
-                        request.session['pre_2fa_user_id'] = user.id
-                        return redirect('auth:verify_mfa')
+                        # Store user ID for MFA verification step
+                        request.session['mfa_user_id'] = user.id
+                        return redirect('auth:mfa_verify')
                     else:
-                        login(request, user)
-                        # Generate JWT token for the user
-                        token = self.generate_jwt_token(user)
-                        request.session['jwt_token'] = token
-                        messages.success(request, 'Welcome back!')
-                        return redirect('home')
+                        # If MFA is not enabled, redirect to setup MFA first
+                        request.session['mfa_setup_user_id'] = user.id
+                        messages.info(request, 'Please set up two-factor authentication to secure your account.')
+                        return redirect('auth:mfa_setup')
                 except UserProfile.DoesNotExist:
                     login(request, user)
                     # Generate JWT token for the user
@@ -124,13 +123,13 @@ class SignupView(TemplateView):
                 password=password
             )
             
-            # Auto-login the user after successful registration
-            login(request, user)
-            # Generate JWT token for the new user
-            token = self.generate_jwt_token(user)
-            request.session['jwt_token'] = token
-            messages.success(request, 'Account created successfully! Welcome!')
-            return redirect('home')
+            # Create UserProfile for MFA
+            UserProfile.objects.get_or_create(user=user)
+            
+            # Redirect to MFA setup (mandatory for new users)
+            request.session['mfa_setup_user_id'] = user.id
+            messages.success(request, 'Account created successfully! Now set up two-factor authentication to secure your account.')
+            return redirect('auth:mfa_setup')
             
         except Exception as e:
             messages.error(request, 'Registration failed. Please try again.')
@@ -147,50 +146,8 @@ class SignupView(TemplateView):
         }
         return jwt.encode(payload, settings.SECRET_KEY, algorithm='HS256')
 
-class MFAVerificationView(TemplateView):
-    template_name = 'accounts/verify_mfa.html'
-    
-    def dispatch(self, request, *args, **kwargs):
-        if 'pre_2fa_user_id' not in request.session:
-            return redirect('auth:login')
-        return super().dispatch(request, *args, **kwargs)
-    
-    def post(self, request):
-        try:
-            user_id = request.session.get('pre_2fa_user_id')
-            token = request.POST.get('token')
-            
-            if not token:
-                messages.error(request, 'Please enter a verification code.')
-                return render(request, self.template_name)
-            
-            if not token.isdigit() or len(token) != 6:
-                messages.error(request, 'Verification code must be 6 digits.')
-                return render(request, self.template_name)
-            
-            user = User.objects.get(id=user_id)
-            profile = user.userprofile
-            
-            totp = pyotp.TOTP(profile.mfa_secret)
-            if totp.verify(token):
-                del request.session['pre_2fa_user_id']
-                login(request, user)
-                # Generate JWT token for the user after MFA verification
-                jwt_token = self.generate_jwt_token(user)
-                request.session['jwt_token'] = jwt_token
-                messages.success(request, 'Successfully logged in!')
-                return redirect('home')
-            else:
-                messages.error(request, 'Invalid verification code. Please try again.')
-                
-        except (User.DoesNotExist, UserProfile.DoesNotExist):
-            messages.error(request, 'Session expired. Please log in again.')
-            return redirect('auth:login')
-        except Exception as e:
-            messages.error(request, 'Verification failed. Please try again.')
-            return redirect('auth:login')
-            
-        return render(request, self.template_name)
+# MFA verification is now handled by mfa_views.py MFAVerifyView
+# This class is kept for compatibility but redirects to the new view
     
     def generate_jwt_token(self, user):
         """Generate a JWT token for the authenticated user."""
@@ -203,64 +160,8 @@ class MFAVerificationView(TemplateView):
         }
         return jwt.encode(payload, settings.SECRET_KEY, algorithm='HS256')
 
-class SetupMFAView(TemplateView):
-    template_name = 'accounts/setup_mfa.html'
-    
-    def dispatch(self, request, *args, **kwargs):
-        if not request.user.is_authenticated:
-            return redirect('auth:login')
-        return super().dispatch(request, *args, **kwargs)
-    
-    def get(self, request):
-        try:
-            profile = request.user.userprofile
-        except UserProfile.DoesNotExist:
-            profile = UserProfile.objects.create(user=request.user)
-        
-        if not profile.mfa_secret:
-            profile.mfa_secret = pyotp.random_base32()
-            profile.save()
-        
-        # Generate QR code
-        totp = pyotp.TOTP(profile.mfa_secret)
-        qr_uri = totp.provisioning_uri(
-            name=request.user.email,
-            issuer_name='TechMart'
-        )
-        
-        qr = qrcode.QRCode(version=1, box_size=10, border=5)
-        qr.add_data(qr_uri)
-        qr.make(fit=True)
-        
-        img = qr.make_image(fill_color="black", back_color="white")
-        buffer = io.BytesIO()
-        img.save(buffer, format='PNG')
-        qr_code_img = base64.b64encode(buffer.getvalue()).decode()
-        
-        context = {
-            'secret': profile.mfa_secret,
-            'qr_code': qr_code_img
-        }
-        return render(request, self.template_name, context)
-    
-    def post(self, request):
-        token = request.POST.get('token')
-        
-        try:
-            profile = request.user.userprofile
-            totp = pyotp.TOTP(profile.mfa_secret)
-            
-            if totp.verify(token):
-                profile.mfa_enabled = True
-                profile.save()
-                messages.success(request, 'MFA has been enabled successfully!')
-                return redirect('accounts:profile')
-            else:
-                messages.error(request, 'Invalid verification code. Please try again.')
-        except UserProfile.DoesNotExist:
-            messages.error(request, 'Profile not found.')
-            
-        return self.get(request)
+# MFA setup is now handled by mfa_views.py MFASetupView  
+# This class is kept for compatibility but should redirect to new views
 
 def logout_view(request):
     logout(request)
