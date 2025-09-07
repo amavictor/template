@@ -1,0 +1,1149 @@
+openapi: 3.0.3
+info:
+  title: TechMart API
+  version: 1.0.0
+  description: API for TechMart eCommerce platform - access products, manage cart,
+    and process orders
+paths:
+  /api/cart/:
+    get:
+      operationId: cart_list
+      description: |-
+        API ViewSet for Cart operations
+        Allows users to manage their shopping cart.
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      tags:
+      - Cart
+      security:
+      - APIKeyAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedCartList'
+          description: ''
+  /api/cart/{id}/:
+    get:
+      operationId: cart_retrieve
+      description: |-
+        API ViewSet for Cart operations
+        Allows users to manage their shopping cart.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - Cart
+      security:
+      - APIKeyAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+          description: ''
+    delete:
+      operationId: cart_destroy
+      description: |-
+        API ViewSet for Cart operations
+        Allows users to manage their shopping cart.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - Cart
+      security:
+      - APIKeyAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/cart/add_item/:
+    post:
+      operationId: cart_add_item_create
+      description: Add a product to the user's shopping cart
+      summary: Add item to cart
+      tags:
+      - cart
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                product_id:
+                  type: integer
+                  description: ID of the product to add to cart
+                  example: 1
+                quantity:
+                  type: integer
+                  minimum: 1
+                  default: 1
+                  description: Quantity of the product to add
+                  example: 2
+              required:
+              - product_id
+      security:
+      - APIKeyAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                description: Item added to cart successfully
+                content:
+                  application/json:
+                    example:
+                      message: Product Name added to cart
+                      cart_total_items: 3
+          description: ''
+        '404':
+          content:
+            application/json:
+              schema:
+                description: Product not found
+                content:
+                  application/json:
+                    example:
+                      error: Product not found
+          description: ''
+  /api/cart/clear/:
+    post:
+      operationId: cart_clear_create
+      description: Remove all items from the user's shopping cart
+      summary: Clear cart
+      tags:
+      - cart
+      security:
+      - APIKeyAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                description: Cart cleared successfully
+                content:
+                  application/json:
+                    example:
+                      message: Cart cleared
+          description: ''
+        '404':
+          content:
+            application/json:
+              schema:
+                description: Cart not found
+                content:
+                  application/json:
+                    example:
+                      error: Cart not found
+          description: ''
+  /api/cart/current/:
+    get:
+      operationId: cart_current_retrieve
+      description: Get the current user's shopping cart
+      summary: Get current user cart
+      tags:
+      - cart
+      security:
+      - APIKeyAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+          description: ''
+  /api/cart/remove_item/:
+    post:
+      operationId: cart_remove_item_create
+      description: Remove a product from the user's shopping cart
+      summary: Remove item from cart
+      tags:
+      - cart
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                product_id:
+                  type: integer
+                  description: ID of the product to remove from cart
+                  example: 1
+              required:
+              - product_id
+      security:
+      - APIKeyAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                description: Item removed from cart successfully
+                content:
+                  application/json:
+                    example:
+                      message: Item removed from cart
+                      cart_total_items: 2
+          description: ''
+        '404':
+          content:
+            application/json:
+              schema:
+                description: Item not found in cart
+                content:
+                  application/json:
+                    example:
+                      error: Item not found in cart
+          description: ''
+  /api/products/:
+    get:
+      operationId: products_list
+      description: |-
+        API ViewSet for Products
+        Provides list and detail views for products.
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      tags:
+      - Products
+      security:
+      - APIKeyAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedProductList'
+          description: ''
+  /api/products/{slug}/:
+    get:
+      operationId: products_retrieve
+      description: |-
+        API ViewSet for Products
+        Provides list and detail views for products.
+      parameters:
+      - in: path
+        name: slug
+        schema:
+          type: string
+        required: true
+      tags:
+      - Products
+      security:
+      - APIKeyAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+          description: ''
+  /api/wishlist/:
+    get:
+      operationId: wishlist_list
+      description: |-
+        API ViewSet for Wishlist operations
+        Allows users to manage their wishlist.
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      tags:
+      - Wishlist
+      security:
+      - APIKeyAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedWishlistList'
+          description: ''
+  /api/wishlist/{id}/:
+    get:
+      operationId: wishlist_retrieve
+      description: |-
+        API ViewSet for Wishlist operations
+        Allows users to manage their wishlist.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - Wishlist
+      security:
+      - APIKeyAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Wishlist'
+          description: ''
+    delete:
+      operationId: wishlist_destroy
+      description: |-
+        API ViewSet for Wishlist operations
+        Allows users to manage their wishlist.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - Wishlist
+      security:
+      - APIKeyAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/wishlist/add_item/:
+    post:
+      operationId: wishlist_add_item_create
+      description: Add a product to the user's wishlist
+      summary: Add item to wishlist
+      tags:
+      - wishlist
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                product_id:
+                  type: integer
+                  description: ID of the product to add to wishlist
+                  example: 1
+              required:
+              - product_id
+      security:
+      - APIKeyAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                description: Item added to wishlist successfully
+                content:
+                  application/json:
+                    example:
+                      message: Product Name added to wishlist
+                      wishlist_total_items: 3
+          description: ''
+        '404':
+          content:
+            application/json:
+              schema:
+                description: Product not found
+                content:
+                  application/json:
+                    example:
+                      error: Product not found
+          description: ''
+  /api/wishlist/current/:
+    get:
+      operationId: wishlist_current_retrieve
+      description: Get the current user's wishlist
+      summary: Get current user wishlist
+      tags:
+      - wishlist
+      security:
+      - APIKeyAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Wishlist'
+          description: ''
+  /api/wishlist/remove_item/:
+    post:
+      operationId: wishlist_remove_item_create
+      description: Remove a product from the user's wishlist
+      summary: Remove item from wishlist
+      tags:
+      - wishlist
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                product_id:
+                  type: integer
+                  description: ID of the product to remove from wishlist
+                  example: 1
+              required:
+              - product_id
+      security:
+      - APIKeyAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                description: Item removed from wishlist successfully
+                content:
+                  application/json:
+                    example:
+                      message: Item removed from wishlist
+                      wishlist_total_items: 2
+          description: ''
+        '404':
+          content:
+            application/json:
+              schema:
+                description: Item not found in wishlist
+                content:
+                  application/json:
+                    example:
+                      error: Item not found in wishlist
+          description: ''
+  /my-account/api/tokens/:
+    get:
+      operationId: listAPITokens
+      description: List all API tokens for the authenticated user
+      summary: List API tokens
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      tags:
+      - API Tokens
+      security:
+      - APIKeyAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - count
+                - results
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=4
+                  previous:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=2
+                  results:
+                    type: array
+                    items:
+                      type: object
+                      additionalProperties: {}
+                      description: Unspecified response body
+              examples:
+                APITokenListResponse:
+                  value:
+                    count: 123
+                    next: http://api.example.org/accounts/?page=4
+                    previous: http://api.example.org/accounts/?page=2
+                    results:
+                    - - id: 1
+                        name: My App Token
+                        is_active: true
+                        expires_at: '2024-12-31T23:59:59Z'
+                        created_at: '2024-01-01T00:00:00Z'
+                        last_used: '2024-01-15T10:30:00Z'
+                        is_expired: false
+                        is_valid: true
+                        days_until_expiry: 350
+                        can_read_products: true
+                        can_manage_cart: true
+                        can_place_orders: true
+                        can_manage_wishlist: true
+                  summary: API Token List Response
+          description: ''
+        '401':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+                description: Unspecified response body
+          description: ''
+    post:
+      operationId: createAPIToken
+      description: Create a new API token for the authenticated user
+      summary: Create API token
+      tags:
+      - API Tokens
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Descriptive name for the token
+                  example: My Mobile App
+                expires_in_days:
+                  type: integer
+                  minimum: 1
+                  maximum: 365
+                  description: Number of days until token expires (optional)
+                  example: 30
+                can_read_products:
+                  type: boolean
+                  default: true
+                  description: Permission to read product data
+                can_manage_cart:
+                  type: boolean
+                  default: true
+                  description: Permission to manage shopping cart
+                can_place_orders:
+                  type: boolean
+                  default: true
+                  description: Permission to place orders
+                can_manage_wishlist:
+                  type: boolean
+                  default: true
+                  description: Permission to manage wishlist
+              required:
+              - name
+      security:
+      - APIKeyAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                description: API token created successfully
+                content:
+                  application/json:
+                    example:
+                      id: 1
+                      name: My Mobile App
+                      token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9...
+                      is_active: true
+                      expires_at: '2024-02-01T00:00:00Z'
+                      created_at: '2024-01-01T00:00:00Z'
+                      last_used: null
+                      is_expired: false
+                      is_valid: true
+                      days_until_expiry: 31
+                      can_read_products: true
+                      can_manage_cart: true
+                      can_place_orders: true
+                      can_manage_wishlist: true
+          description: ''
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+                description: Unspecified response body
+          description: ''
+        '401':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+                description: Unspecified response body
+          description: ''
+  /my-account/api/tokens/{id}/:
+    get:
+      operationId: my_account_api_tokens_retrieve
+      description: Retrieve, update, or delete an API token.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - my-account
+      security:
+      - APIKeyAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIToken'
+          description: ''
+    put:
+      operationId: my_account_api_tokens_update
+      description: Update an existing API token
+      summary: Update API token
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - my-account
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Descriptive name for the token
+                  example: My Updated App Token
+                is_active:
+                  type: boolean
+                  description: Whether the token is active
+                can_read_products:
+                  type: boolean
+                  description: Permission to read product data
+                can_manage_cart:
+                  type: boolean
+                  description: Permission to manage shopping cart
+                can_place_orders:
+                  type: boolean
+                  description: Permission to place orders
+                can_manage_wishlist:
+                  type: boolean
+                  description: Permission to manage wishlist
+      security:
+      - APIKeyAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIToken'
+          description: ''
+        '404':
+          content:
+            application/json:
+              schema:
+                description: Token not found
+          description: ''
+        '401':
+          content:
+            application/json:
+              schema:
+                description: Authentication required
+          description: ''
+    patch:
+      operationId: my_account_api_tokens_partial_update
+      description: Partially update an existing API token
+      summary: Partially update API token
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - my-account
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Descriptive name for the token
+                  example: My Updated App Token
+                is_active:
+                  type: boolean
+                  description: Whether the token is active
+                can_read_products:
+                  type: boolean
+                  description: Permission to read product data
+                can_manage_cart:
+                  type: boolean
+                  description: Permission to manage shopping cart
+                can_place_orders:
+                  type: boolean
+                  description: Permission to place orders
+                can_manage_wishlist:
+                  type: boolean
+                  description: Permission to manage wishlist
+      security:
+      - APIKeyAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIToken'
+          description: ''
+        '404':
+          content:
+            application/json:
+              schema:
+                description: Token not found
+          description: ''
+        '401':
+          content:
+            application/json:
+              schema:
+                description: Authentication required
+          description: ''
+    delete:
+      operationId: my_account_api_tokens_destroy
+      description: Retrieve, update, or delete an API token.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - my-account
+      security:
+      - APIKeyAuth: []
+      responses:
+        '204':
+          description: No response body
+  /my-account/api/tokens/{id}/regenerate/:
+    post:
+      operationId: regenerateAPIToken
+      description: Regenerate an existing API token (creates new JWT)
+      summary: Regenerate API token
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - API Tokens
+      security:
+      - APIKeyAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                description: API token regenerated successfully
+                content:
+                  application/json:
+                    example:
+                      message: API token regenerated successfully
+                      token:
+                        id: 1
+                        name: My Mobile App
+                        token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9...
+                        is_active: true
+                        expires_at: '2024-02-01T00:00:00Z'
+                        created_at: '2024-01-01T12:00:00Z'
+          description: ''
+        '404':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+                description: Unspecified response body
+          description: ''
+        '401':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+                description: Unspecified response body
+          description: ''
+  /my-account/api/tokens/{id}/toggle/:
+    post:
+      operationId: my_account_api_tokens_toggle_create
+      description: Toggle an API token's active/inactive status
+      summary: Toggle API token status
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - my-account
+      security:
+      - APIKeyAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                description: API token status toggled successfully
+                content:
+                  application/json:
+                    example:
+                      message: API token activated successfully
+                      token:
+                        id: 1
+                        name: My Mobile App
+                        is_active: true
+                        expires_at: '2024-02-01T00:00:00Z'
+                        created_at: '2024-01-01T12:00:00Z'
+          description: ''
+        '404':
+          content:
+            application/json:
+              schema:
+                description: Token not found
+                content:
+                  application/json:
+                    example:
+                      error: Token not found
+          description: ''
+        '401':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+                description: Unspecified response body
+          description: ''
+components:
+  schemas:
+    APIToken:
+      type: object
+      description: Serializer for APIToken model.
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          description: Descriptive name for this token.
+          maxLength: 100
+        is_active:
+          type: boolean
+        expires_at:
+          type: string
+          format: date-time
+          nullable: true
+          description: Token expiration date. Leave blank for no expiration.
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        last_used:
+          type: string
+          format: date-time
+          readOnly: true
+          nullable: true
+          description: Last time this token was used.
+        is_expired:
+          type: boolean
+          readOnly: true
+        is_valid:
+          type: boolean
+          readOnly: true
+        days_until_expiry:
+          type: string
+          readOnly: true
+        can_read_products:
+          type: boolean
+          description: Permission to read product data.
+        can_manage_cart:
+          type: boolean
+          description: Permission to manage shopping cart.
+        can_place_orders:
+          type: boolean
+          description: Permission to place orders.
+        can_manage_wishlist:
+          type: boolean
+          description: Permission to manage wishlist.
+      required:
+      - created_at
+      - days_until_expiry
+      - id
+      - is_expired
+      - is_valid
+      - last_used
+      - name
+      - updated_at
+    Cart:
+      type: object
+      description: Serializer for Cart model.
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        user:
+          type: integer
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/CartItem'
+          readOnly: true
+        total_items:
+          type: integer
+          readOnly: true
+        total_price:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - created_at
+      - id
+      - items
+      - total_items
+      - total_price
+      - updated_at
+      - user
+    CartItem:
+      type: object
+      description: Serializer for Cart Item model.
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        product:
+          allOf:
+          - $ref: '#/components/schemas/Product'
+          readOnly: true
+        quantity:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 1
+          format: int64
+        total_price:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+          readOnly: true
+        added_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - added_at
+      - id
+      - product
+      - total_price
+    PaginatedCartList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Cart'
+    PaginatedProductList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Product'
+    PaginatedWishlistList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Wishlist'
+    Product:
+      type: object
+      description: Serializer for Product model.
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 200
+        sku:
+          type: string
+          nullable: true
+          maxLength: 100
+        short_description:
+          type: string
+          maxLength: 255
+        description:
+          type: string
+        environmental_matrix:
+          type: string
+          nullable: true
+          description: Environmental impact and sustainability information (e.g.,
+            CO2 effect, energy efficiency, recyclability)
+        price:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+        compare_at_price:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+          nullable: true
+        main_image:
+          type: string
+          format: uri
+          nullable: true
+        stock_quantity:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+        is_featured:
+          type: boolean
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - created_at
+      - description
+      - id
+      - name
+      - price
+    Wishlist:
+      type: object
+      description: Serializer for Wishlist model.
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        user:
+          type: integer
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/WishlistItem'
+          readOnly: true
+        item_count:
+          type: integer
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - created_at
+      - id
+      - item_count
+      - items
+      - updated_at
+      - user
+    WishlistItem:
+      type: object
+      description: Serializer for Wishlist Item model.
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        product:
+          allOf:
+          - $ref: '#/components/schemas/Product'
+          readOnly: true
+        added_at:
+          type: string
+          format: date-time
+          readOnly: true
+        note:
+          type: string
+          description: Optional note about this item
+      required:
+      - added_at
+      - id
+      - product
+  securitySchemes:
+    APIKeyAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT API Token Authentication - Get your token from Admin → API
+        Tokens

@@ -202,4 +202,4 @@ coverage.xml
 
 # Django migrations (optional - remove this line if you want to track migrations)
 # */migrations/*.py
-# !*/migrations/__init__.py
+# !*/migrations/__init__.py.env

@@ -54,6 +54,94 @@ class APITokenDetailView(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [IsAuthenticated]
     serializer_class = APITokenSerializer
     
+    @extend_schema(
+        request={
+            'application/json': {
+                'type': 'object',
+                'properties': {
+                    'name': {
+                        'type': 'string',
+                        'description': 'Descriptive name for the token',
+                        'example': 'My Updated App Token'
+                    },
+                    'is_active': {
+                        'type': 'boolean',
+                        'description': 'Whether the token is active'
+                    },
+                    'can_read_products': {
+                        'type': 'boolean',
+                        'description': 'Permission to read product data'
+                    },
+                    'can_manage_cart': {
+                        'type': 'boolean',
+                        'description': 'Permission to manage shopping cart'
+                    },
+                    'can_place_orders': {
+                        'type': 'boolean',
+                        'description': 'Permission to place orders'
+                    },
+                    'can_manage_wishlist': {
+                        'type': 'boolean',
+                        'description': 'Permission to manage wishlist'
+                    }
+                }
+            }
+        },
+        responses={
+            200: APITokenSerializer,
+            404: {'description': 'Token not found'},
+            401: {'description': 'Authentication required'}
+        },
+        summary='Update API token',
+        description='Update an existing API token'
+    )
+    def put(self, request, *args, **kwargs):
+        return super().put(request, *args, **kwargs)
+    
+    @extend_schema(
+        request={
+            'application/json': {
+                'type': 'object',
+                'properties': {
+                    'name': {
+                        'type': 'string',
+                        'description': 'Descriptive name for the token',
+                        'example': 'My Updated App Token'
+                    },
+                    'is_active': {
+                        'type': 'boolean',
+                        'description': 'Whether the token is active'
+                    },
+                    'can_read_products': {
+                        'type': 'boolean',
+                        'description': 'Permission to read product data'
+                    },
+                    'can_manage_cart': {
+                        'type': 'boolean',
+                        'description': 'Permission to manage shopping cart'
+                    },
+                    'can_place_orders': {
+                        'type': 'boolean',
+                        'description': 'Permission to place orders'
+                    },
+                    'can_manage_wishlist': {
+                        'type': 'boolean',
+                        'description': 'Permission to manage wishlist'
+                    }
+                }
+            }
+        },
+        responses={
+            200: APITokenSerializer,
+            404: {'description': 'Token not found'},
+            401: {'description': 'Authentication required'}
+        },
+        summary='Partially update API token',
+        description='Partially update an existing API token'
+    )
+    def patch(self, request, *args, **kwargs):
+        return super().patch(request, *args, **kwargs)
+    
     def get_queryset(self):
         return APIToken.objects.filter(user=self.request.user)
 
@@ -82,6 +170,39 @@ def regenerate_api_token(request, pk):
     })
 
 
+@extend_schema(
+    request=None,  # No request body needed
+    responses={
+        200: {
+            'description': 'API token status toggled successfully',
+            'content': {
+                'application/json': {
+                    'example': {
+                        'message': 'API token activated successfully',
+                        'token': {
+                            'id': 1,
+                            'name': 'My Mobile App',
+                            'is_active': True,
+                            'expires_at': '2024-02-01T00:00:00Z',
+                            'created_at': '2024-01-01T12:00:00Z'
+                        }
+                    }
+                }
+            }
+        },
+        404: {
+            'description': 'Token not found',
+            'content': {
+                'application/json': {
+                    'example': {'error': 'Token not found'}
+                }
+            }
+        },
+        401: 'Authentication required'
+    },
+    summary='Toggle API token status',
+    description='Toggle an API token\'s active/inactive status'
+)
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def toggle_api_token(request, pk):
