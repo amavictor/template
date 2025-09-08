@@ -1860,3 +1860,150 @@ Watching for file changes with StatReloader
 Watching for file changes with StatReloader
 "GET /api/schema/swagger-ui/ HTTP/1.1" 200 4708
 "GET /api/schema/ HTTP/1.1" 200 68474
+"GET / HTTP/1.1" 200 14997
+"GET /products/ HTTP/1.1" 200 14845
+"GET /products/1/ HTTP/1.1" 200 21679
+Watching for file changes with StatReloader
+"GET /api/schema/swagger-ui/ HTTP/1.1" 200 4708
+"GET /admin/ HTTP/1.1" 200 8832
+"GET /static/admin/css/base.css HTTP/1.1" 304 0
+"GET /static/admin/js/theme.js HTTP/1.1" 304 0
+"GET /static/admin/css/dark_mode.css HTTP/1.1" 304 0
+"GET /static/admin/css/nav_sidebar.css HTTP/1.1" 304 0
+"GET /static/admin/css/dashboard.css HTTP/1.1" 304 0
+"GET /static/admin/css/responsive.css HTTP/1.1" 304 0
+"GET /static/admin/js/nav_sidebar.js HTTP/1.1" 304 0
+"GET /static/admin/img/icon-addlink.svg HTTP/1.1" 304 0
+"GET /static/admin/img/icon-changelink.svg HTTP/1.1" 304 0
+"GET /static/admin/img/icon-deletelink.svg HTTP/1.1" 304 0
+"GET /admin/accounts/apitoken/ HTTP/1.1" 200 14039
+"GET /static/admin/css/changelists.css HTTP/1.1" 304 0
+"GET /static/admin/js/core.js HTTP/1.1" 304 0
+"GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 304 0
+"GET /static/admin/js/actions.js HTTP/1.1" 304 0
+"GET /static/admin/js/jquery.init.js HTTP/1.1" 304 0
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /static/admin/js/urlify.js HTTP/1.1" 304 0
+"GET /static/admin/js/prepopulate.js HTTP/1.1" 304 0
+"GET /static/admin/img/icon-yes.svg HTTP/1.1" 304 0
+"GET /static/admin/img/search.svg HTTP/1.1" 304 0
+"GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 200 285314
+"GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 200 325171
+"GET /static/admin/js/filters.js HTTP/1.1" 304 0
+"GET /static/admin/img/tooltag-add.svg HTTP/1.1" 304 0
+"GET /static/admin/img/sorting-icons.svg HTTP/1.1" 304 0
+"GET /static/admin/img/icon-viewlink.svg HTTP/1.1" 304 0
+"GET /admin/accounts/apitoken/?o=7 HTTP/1.1" 200 14270
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/accounts/apitoken/?o=-7 HTTP/1.1" 200 14296
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/accounts/apitoken/3/change/?_changelist_filters=o%3D-7 HTTP/1.1" 200 20038
+"GET /static/admin/js/calendar.js HTTP/1.1" 200 9141
+"GET /static/admin/css/forms.css HTTP/1.1" 304 0
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /static/admin/js/admin/DateTimeShortcuts.js HTTP/1.1" 200 19319
+"GET /static/admin/js/prepopulate_init.js HTTP/1.1" 304 0
+"GET /static/admin/css/widgets.css HTTP/1.1" 304 0
+"GET /static/admin/js/change_form.js HTTP/1.1" 304 0
+"GET /static/admin/img/icon-calendar.svg HTTP/1.1" 304 0
+"GET /static/admin/img/icon-clock.svg HTTP/1.1" 304 0
+Unauthorized: /api/cart/
+"GET /api/cart/ HTTP/1.1" 401 34
+Unauthorized: /api/cart/
+"GET /api/cart/ HTTP/1.1" 401 34
+"GET /admin/accounts/apitoken/add/ HTTP/1.1" 200 19271
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /api/schema/ HTTP/1.1" 200 68474
+"POST /admin/accounts/apitoken/add/ HTTP/1.1" 200 19535
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /admin/accounts/apitoken/add/ HTTP/1.1" 302 0
+"GET /admin/accounts/apitoken/ HTTP/1.1" 200 14912
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/accounts/apitoken/4/change/ HTTP/1.1" 200 19997
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/accounts/apitoken/ HTTP/1.1" 200 14676
+Watching for file changes with StatReloader
+"GET /api/schema/swagger-ui/ HTTP/1.1" 200 4708
+"GET /api/schema/ HTTP/1.1" 200 68474
+"GET /admin/ HTTP/1.1" 200 9214
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3771
+"GET /admin/accounts/apitoken/ HTTP/1.1" 200 14676
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/accounts/apitoken/4/change/ HTTP/1.1" 200 19997
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/accounts/apitoken/4/delete/ HTTP/1.1" 200 7941
+"GET /static/admin/js/cancel.js HTTP/1.1" 304 0
+"POST /admin/accounts/apitoken/4/delete/ HTTP/1.1" 302 0
+"GET /admin/accounts/apitoken/ HTTP/1.1" 200 14228
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /admin/accounts/apitoken/ HTTP/1.1" 302 0
+"GET /admin/accounts/apitoken/ HTTP/1.1" 200 14164
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /static/admin/img/icon-alert.svg HTTP/1.1" 200 504
+"POST /admin/accounts/apitoken/ HTTP/1.1" 200 8188
+"POST /admin/accounts/apitoken/ HTTP/1.1" 302 0
+"GET /admin/accounts/apitoken/ HTTP/1.1" 200 10758
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/accounts/apitoken/add/ HTTP/1.1" 200 19271
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /static/admin/img/calendar-icons.svg HTTP/1.1" 304 0
+"POST /admin/accounts/apitoken/add/ HTTP/1.1" 302 0
+"GET /admin/accounts/apitoken/ HTTP/1.1" 200 13591
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/accounts/apitoken/5/change/ HTTP/1.1" 200 19928
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+Unauthorized: /api/cart/
+"GET /api/cart/ HTTP/1.1" 401 58
+Unauthorized: /api/cart/
+"GET /api/cart/ HTTP/1.1" 401 34
+Unauthorized: /api/cart/
+"GET /api/cart/ HTTP/1.1" 401 34
+Unauthorized: /api/cart/
+"GET /api/cart/ HTTP/1.1" 401 34
+Unauthorized: /api/cart/
+"GET /api/cart/ HTTP/1.1" 401 34
+"POST /admin/accounts/apitoken/5/change/ HTTP/1.1" 302 0
+"GET /admin/accounts/apitoken/ HTTP/1.1" 200 13593
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/accounts/apitoken/5/change/ HTTP/1.1" 200 19928
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/accounts/apitoken/5/delete/ HTTP/1.1" 200 7902
+"POST /admin/accounts/apitoken/5/delete/ HTTP/1.1" 302 0
+"GET /admin/accounts/apitoken/ HTTP/1.1" 200 10794
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/accounts/apitoken/add/ HTTP/1.1" 200 19271
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /admin/accounts/apitoken/add/ HTTP/1.1" 302 0
+"GET /admin/accounts/apitoken/ HTTP/1.1" 200 13604
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/accounts/apitoken/6/change/ HTTP/1.1" 200 19934
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+Unauthorized: /api/cart/
+"GET /api/cart/ HTTP/1.1" 401 34
+/Users/victorama/sprint-2-ecommerce/bluewave_ecommerce/settings.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/victorama/sprint-2-ecommerce/bluewave_ecommerce/settings.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /admin/accounts/apitoken/ HTTP/1.1" 200 13376
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+code 400, message Bad request version ("«ý\x90\x1a¬y1ïAaD,\x92àC\x98\x1a6«*ð\x01$\x96\x98+\x99\x00h\x13\x02\x13\x03\x13\x01À/À+À0À,\x00\x9eÀ'\x00gÀ(\x00k\x00£\x00\x9fÌ©Ì¨ÌªÀ\xadÀ\x9fÀ]ÀaÀWÀS\x00¢À¬À\x9eÀ\\À`ÀVÀRÀ$\x00jÀ#\x00@À")
+You're accessing the development server over HTTPS, but it only supports HTTP.
+"GET /api/schema/swagger-ui/ HTTP/1.1" 200 4708
+"GET /api/products/ HTTP/1.1" 200 492
+Unauthorized: /api/products/
+"GET /api/products/ HTTP/1.1" 401 34
+Unauthorized: /api/products/
+"GET /api/products/ HTTP/1.1" 401 58
+Watching for file changes with StatReloader
+"GET /api/schema/swagger-ui/ HTTP/1.1" 200 4708
+"GET /api/schema/ HTTP/1.1" 200 68474
+"GET /api/schema/swagger-ui/ HTTP/1.1" 200 4708
+"GET /api/schema/ HTTP/1.1" 200 68474
+"GET /admin/accounts/apitoken/ HTTP/1.1" 200 14026
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/accounts/apitoken/7/change/ HTTP/1.1" 200 19979
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /api/cart/ HTTP/1.1" 200 52
+"GET /api/cart/ HTTP/1.1" 200 52

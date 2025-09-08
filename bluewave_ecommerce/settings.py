@@ -131,7 +131,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Django REST Framework
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'accounts.authentication.APIKeyAuthentication',
+        'api.authentication.APITokenAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticatedOrReadOnly',
@@ -286,7 +286,7 @@ SPECTACULAR_SETTINGS = {
         'displayOperationId': False,
     },
     'AUTHENTICATION_WHITELIST': [
-        'accounts.authentication.APIKeyAuthentication',
+        'api.authentication.APITokenAuthentication',
     ],
 }
 
