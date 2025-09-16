@@ -19,14 +19,14 @@ from django.contrib.sites.models import Site
 
 
 def setup_google_oauth():
-    print("🔐 Setting up Google OAuth for TechMart...")
+    print("🔐 Setting up Google OAuth for BlueWave...")
     
     # Get or create the site
     site, created = Site.objects.get_or_create(
         pk=1,
         defaults={
             'domain': 'localhost:8000',
-            'name': 'TechMart Development'
+            'name': 'BlueWave Development'
         }
     )
     

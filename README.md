@@ -1,4 +1,4 @@
-# TechMart E-commerce Platform
+# BlueWave E-commerce Platform
 
 A modern Django-based e-commerce platform with advanced features including:
 

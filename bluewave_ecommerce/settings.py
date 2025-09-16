@@ -1,5 +1,5 @@
 """
-Django settings for TechMart eCommerce platform.
+Django settings for BlueWave eCommerce platform.
 
 A modern ecommerce platform for selling products with API access.
 """
@@ -30,6 +30,7 @@ DJANGO_APPS = [
 
 THIRD_PARTY_APPS = [
     'rest_framework',
+    'rest_framework.authtoken',
     'rest_framework_simplejwt',
     'corsheaders',
     'crispy_forms',
@@ -242,7 +243,7 @@ CSRF_TRUSTED_ORIGINS = [
 
 # Email Configuration
 EMAIL_BACKEND = config('EMAIL_BACKEND', default='django.core.mail.backends.console.EmailBackend')
-DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL', default='noreply@techmart.com')
+DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL', default='noreply@BlueWave.com')
 
 # Stripe Configuration
 STRIPE_PUBLISHABLE_KEY = config('STRIPE_PUBLISHABLE_KEY', default='')
@@ -263,8 +264,8 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 # DRF Spectacular Settings
 SPECTACULAR_SETTINGS = {
-    'TITLE': 'TechMart API',
-    'DESCRIPTION': 'API for TechMart eCommerce platform - access products, manage cart, and process orders',
+    'TITLE': 'BlueWave API',
+    'DESCRIPTION': 'API for BlueWave eCommerce platform - access products, manage cart, and process orders',
     'VERSION': '1.0.0',
     'SERVE_INCLUDE_SCHEMA': False,
     'COMPONENT_SPLIT_REQUEST': True,

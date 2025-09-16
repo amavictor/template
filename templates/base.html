@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{% block title %}TechMart - Your Premium Online Store{% endblock %}</title>
+    <title>{% block title %}BlueWave - Your Premium Online Store{% endblock %}</title>
     
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -79,7 +79,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
         <div class="container">
             <a class="navbar-brand" href="{% url 'home' %}">
-                <i class="fas fa-shopping-bag"></i> TechMart
+                <i class="fas fa-shopping-bag"></i> BlueWave
             </a>
             
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -116,6 +116,9 @@
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="{% url 'orders:order_list' %}">
                                     <i class="fas fa-list-alt"></i> My Orders
+                                </a></li>
+                                <li><a class="dropdown-item" href="{% url 'subscriptions:api_settings' %}">
+                                    <i class="fas fa-cog"></i> API Settings
                                 </a></li>
                                 <li><a class="dropdown-item" href="{% url 'auth:setup_mfa' %}">
                                     <i class="fas fa-shield-alt"></i> Setup MFA
@@ -171,7 +174,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
-                    <h5>TechMart</h5>
+                    <h5>Bluewave</h5>
                     <p>Your premium online destination for electronics, fashion, home goods, and professional API services.</p>
                 </div>
                 <div class="col-md-2">
@@ -210,7 +213,7 @@
             <hr>
             <div class="row">
                 <div class="col-md-6">
-                    <p>&copy; 2024 TechMart. All rights reserved.</p>
+                    <p>&copy; 2024 BlueWave. All rights reserved.</p>
                 </div>
                 <div class="col-md-6 text-end">
                     <a href="#" class="text-decoration-none">Privacy Policy</a> | 

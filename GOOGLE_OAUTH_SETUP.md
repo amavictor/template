@@ -1,6 +1,6 @@
 # Google OAuth Setup Guide
 
-This guide explains how to configure Google OAuth authentication for your TechMart Django application.
+This guide explains how to configure Google OAuth authentication for your BlueWave Django application.
 
 ## Prerequisites
 
@@ -27,13 +27,13 @@ The application is already configured to use Google OAuth with django-allauth. Y
 2. Click "Create Credentials" > "OAuth 2.0 Client IDs"
 3. If prompted, configure the OAuth consent screen first:
    - Choose "External" user type
-   - Fill in the application name: "TechMart"
+   - Fill in the application name: "BlueWave"
    - Add your email as a developer email
    - Add scopes: `email`, `profile`, `openid`
 
 4. For the OAuth 2.0 Client ID:
    - Application type: "Web application"
-   - Name: "TechMart Django App"
+   - Name: "BlueWave Django App"
    - Authorized JavaScript origins:
      - `http://localhost:8000`
      - `http://127.0.0.1:8000`

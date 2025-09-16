@@ -12,9 +12,9 @@ def customize_admin():
         pass  # Already unregistered
 
     # Customize admin site
-    admin.site.site_header = 'TechMart Admin'
-    admin.site.site_title = 'TechMart Admin Portal'
-    admin.site.index_title = 'Welcome to TechMart Administration'
+    admin.site.site_header = 'BlueWave Admin'
+    admin.site.site_title = 'BlueWave Admin Portal'
+    admin.site.index_title = 'Welcome to BlueWave Administration'
 
 # Auto-run customization
 customize_admin()

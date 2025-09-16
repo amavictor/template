@@ -1,0 +1,340 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}API Settings - BlueWave ECommerce{% endblock %}
+
+{% block extra_css %}
+<style>
+    .settings-sidebar {
+        background-color: #f8f9fa;
+        border-right: 1px solid #dee2e6;
+        min-height: calc(100vh - 76px);
+    }
+    
+    .settings-nav-link {
+        color: #6c757d;
+        padding: 12px 20px;
+        border-left: 3px solid transparent;
+        text-decoration: none;
+        display: block;
+        border-bottom: 1px solid #dee2e6;
+    }
+    
+    .settings-nav-link:hover {
+        background-color: #e9ecef;
+        color: #495057;
+        text-decoration: none;
+    }
+    
+    .settings-nav-link.active {
+        color: #007bff;
+        background-color: white;
+        border-left-color: #007bff;
+        font-weight: 500;
+    }
+    
+    .package-card {
+        transition: transform 0.2s;
+        height: 100%;
+    }
+    
+    .package-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    
+    .package-price {
+        font-size: 2rem;
+        font-weight: bold;
+        color: #007bff;
+    }
+    
+    .token-display {
+        background-color: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 0.25rem;
+        padding: 15px;
+        font-family: 'Courier New', monospace;
+        word-break: break-all;
+        position: relative;
+    }
+    
+    .copy-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+    }
+    
+    .status-badge {
+        font-size: 0.875rem;
+    }
+    
+    .feature-list {
+        list-style: none;
+        padding-left: 0;
+    }
+    
+    .feature-list li {
+        padding: 4px 0;
+    }
+    
+    .feature-list li:before {
+        content: "✓";
+        color: #28a745;
+        font-weight: bold;
+        margin-right: 8px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <!-- Settings Sidebar -->
+        <div class="col-md-3 settings-sidebar p-0">
+            <div class="p-3 border-bottom">
+                <h5 class="mb-0">Account Settings</h5>
+            </div>
+            <nav class="settings-nav">
+                <a href="#" class="settings-nav-link">
+                    <i class="fas fa-user me-2"></i> Profile
+                </a>
+                <a href="#" class="settings-nav-link active">
+                    <i class="fas fa-key me-2"></i> API Access
+                </a>
+                <a href="#" class="settings-nav-link">
+                    <i class="fas fa-credit-card me-2"></i> Billing
+                </a>
+                <a href="#" class="settings-nav-link">
+                    <i class="fas fa-bell me-2"></i> Notifications
+                </a>
+                <a href="#" class="settings-nav-link">
+                    <i class="fas fa-shield-alt me-2"></i> Security
+                </a>
+            </nav>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="col-md-9 p-4">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div>
+                    <h2>API Access Settings</h2>
+                    <p class="text-muted mb-0">Manage your API tokens and subscription packages</p>
+                </div>
+            </div>
+            
+            <!-- Current API Tokens -->
+            {% if user_tokens %}
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i class="fas fa-key me-2"></i>Your API Tokens
+                    </h5>
+                </div>
+                <div class="card-body">
+                    {% for user_token in user_tokens %}
+                    <div class="row mb-4 {% if not forloop.last %}border-bottom pb-4{% endif %}">
+                        <div class="col-md-8">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <div>
+                                    <h6 class="mb-1">{{ user_token.package.name }}</h6>
+                                    <small class="text-muted">
+                                        Valid until {{ user_token.expires_at|date:"M d, Y" }}
+                                    </small>
+                                </div>
+                                {% if user_token.is_valid %}
+                                    <span class="badge bg-success status-badge">Active</span>
+                                {% else %}
+                                    <span class="badge bg-danger status-badge">Expired</span>
+                                {% endif %}
+                            </div>
+                            
+                            <div class="token-display mb-2">
+                                <button class="btn btn-sm btn-outline-secondary copy-btn" 
+                                        onclick="copyToken('{{ user_token.token.key }}')"
+                                        title="Copy to clipboard">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                                <code>{{ user_token.token.key }}</code>
+                            </div>
+                            
+                            <div class="row text-center">
+                                <div class="col-4">
+                                    <small class="text-muted d-block">API Calls Used</small>
+                                    <strong>{{ user_token.api_calls_used }}/{{ user_token.package.api_calls_per_month }}</strong>
+                                </div>
+                                <div class="col-4">
+                                    <small class="text-muted d-block">Days Remaining</small>
+                                    <strong>{{ user_token.days_remaining }}</strong>
+                                </div>
+                                <div class="col-4">
+                                    <small class="text-muted d-block">Last Used</small>
+                                    <strong>{{ user_token.last_used_at|date:"M d"|default:"Never" }}</strong>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 text-end">
+                            <div class="progress mb-2" style="height: 8px;">
+                                {% widthratio user_token.api_calls_used user_token.package.api_calls_per_month 100 as usage_percent %}
+                                <div class="progress-bar" role="progressbar" 
+                                     style="width: {{ usage_percent }}%"
+                                     aria-valuenow="{{ usage_percent }}" 
+                                     aria-valuemin="0" 
+                                     aria-valuemax="100"></div>
+                            </div>
+                            <small class="text-muted">{{ usage_percent }}% used</small>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+            
+            <!-- Subscription Packages -->
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <i class="fas fa-shopping-cart me-2"></i>API Token Packages
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        {% for package in packages %}
+                        <div class="col-lg-4 col-md-6 mb-4">
+                            <div class="card package-card border-2 {% if package.is_featured %}border-primary{% endif %}">
+                                {% if package.is_featured %}
+                                <div class="card-header bg-primary text-white text-center py-2">
+                                    <small class="fw-bold">MOST POPULAR</small>
+                                </div>
+                                {% endif %}
+                                
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">{{ package.name }}</h5>
+                                    <div class="package-price mb-3">
+                                        ${{ package.price }}
+                                        <small class="text-muted d-block" style="font-size: 0.9rem;">
+                                            for {{ package.get_duration_display|lower }}
+                                        </small>
+                                    </div>
+                                    
+                                    <p class="card-text text-muted mb-3">
+                                        {{ package.description|default:"Perfect for getting started with our API" }}
+                                    </p>
+                                    
+                                    <ul class="feature-list mb-4">
+                                        <li>{{ package.api_calls_per_month|floatformat:0 }} API calls/month</li>
+                                        <li>{{ package.concurrent_connections }} concurrent connection{{ package.concurrent_connections|pluralize }}</li>
+                                        {% if package.includes_real_time_data %}
+                                        <li>Real-time data access</li>
+                                        {% endif %}
+                                        {% if package.includes_historical_data %}
+                                        <li>Historical data access</li>
+                                        {% endif %}
+                                        {% if package.includes_analytics %}
+                                        <li>Advanced analytics</li>
+                                        {% endif %}
+                                    </ul>
+                                    
+                                    <button class="btn btn-primary w-100 purchase-btn" 
+                                            data-package-id="{{ package.id }}"
+                                            data-package-name="{{ package.name }}"
+                                            data-package-price="{{ package.price }}">
+                                        Purchase {{ package.get_duration_display }}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        {% empty %}
+                        <div class="col-12">
+                            <div class="text-center py-5">
+                                <i class="fas fa-box-open fa-3x text-muted mb-3"></i>
+                                <h5 class="text-muted">No packages available</h5>
+                                <p class="text-muted">API token packages will appear here when available.</p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Toast for notifications -->
+<div class="toast-container position-fixed top-0 end-0 p-3">
+    <div id="copyToast" class="toast" role="alert">
+        <div class="toast-header">
+            <i class="fas fa-check-circle text-success me-2"></i>
+            <strong class="me-auto">Success</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+        </div>
+        <div class="toast-body">
+            Token copied to clipboard!
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Copy token to clipboard
+function copyToken(token) {
+    navigator.clipboard.writeText(token).then(function() {
+        // Show toast
+        var toast = new bootstrap.Toast(document.getElementById('copyToast'));
+        toast.show();
+    }).catch(function(err) {
+        console.error('Could not copy token: ', err);
+        alert('Failed to copy token to clipboard');
+    });
+}
+
+// Handle package purchase
+document.addEventListener('DOMContentLoaded', function() {
+    const purchaseBtns = document.querySelectorAll('.purchase-btn');
+    
+    purchaseBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const packageId = this.getAttribute('data-package-id');
+            const packageName = this.getAttribute('data-package-name');
+            const packagePrice = this.getAttribute('data-package-price');
+            
+            // Disable button and show loading
+            this.disabled = true;
+            this.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Adding to cart...';
+            
+            // Make request
+            fetch('{% url "subscriptions:purchase_api_package" %}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}'
+                },
+                body: JSON.stringify({
+                    package_id: packageId
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Redirect to cart or show success message
+                    window.location.href = data.redirect_url;
+                } else {
+                    alert('Error: ' + data.error);
+                    // Re-enable button
+                    this.disabled = false;
+                    this.innerHTML = `Purchase ${packageName}`;
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred. Please try again.');
+                // Re-enable button
+                this.disabled = false;
+                this.innerHTML = `Purchase ${packageName}`;
+            });
+        });
+    });
+});
+</script>
+{% endblock %}

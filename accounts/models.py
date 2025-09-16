@@ -125,7 +125,7 @@ class UserProfile(models.Model):
         
         return pyotp.totp.TOTP(self.mfa_secret).provisioning_uri(
             name=self.user.email or self.user.username,
-            issuer_name="TechMart"
+            issuer_name="BlueWave"
         )
     
     def verify_totp(self, token):

@@ -44,12 +44,19 @@ class CheckoutView(LoginRequiredMixin, View):
             # Create line items for Stripe
             line_items = []
             for item in cart_items:
+                # Ensure we have a non-empty description for Stripe
+                description = (
+                    item.product.short_description or 
+                    item.product.description or 
+                    f"Product: {item.product.name}"
+                )
+                
                 line_items.append({
                     'price_data': {
                         'currency': 'usd',
                         'product_data': {
                             'name': item.product.name,
-                            'description': item.product.short_description or '',
+                            'description': description,
                         },
                         'unit_amount': int(item.product.price * 100),  # Convert to cents
                     },

@@ -70,7 +70,7 @@ class MFASetupView(TemplateView):
         context.update({
             'qr_code_base64': qr_code_base64,
             'secret_key': user_profile.mfa_secret,
-            'app_name': 'TechMart',
+            'app_name': 'BlueWave',
             'user_email': setup_user.email or setup_user.username,
             'mfa_enabled': user_profile.mfa_enabled,
             'setup_user': setup_user,

@@ -16,6 +16,7 @@ User = get_user_model()
 class APITokenAuthenticationTest(TestCase):
     def setUp(self):
         self.user = User.objects.create_user(
+            username='testuser',
             email='test@example.com',
             password='testpass123'
         )
@@ -42,6 +43,7 @@ class APITokenAuthenticationTest(TestCase):
 class ProductViewSetTest(APITestCase):
     def setUp(self):
         self.user = User.objects.create_user(
+            username='testuser',
             email='test@example.com',
             password='testpass123'
         )
@@ -99,6 +101,7 @@ class ProductViewSetTest(APITestCase):
 class CartViewSetTest(APITestCase):
     def setUp(self):
         self.user = User.objects.create_user(
+            username='testuser',
             email='test@example.com',
             password='testpass123'
         )
@@ -230,6 +233,7 @@ class CartViewSetTest(APITestCase):
 class WishlistViewSetTest(APITestCase):
     def setUp(self):
         self.user = User.objects.create_user(
+            username='testuser',
             email='test@example.com',
             password='testpass123'
         )
@@ -340,6 +344,7 @@ class WishlistViewSetTest(APITestCase):
 class CartModelTest(TestCase):
     def setUp(self):
         self.user = User.objects.create_user(
+            username='testuser',
             email='test@example.com',
             password='testpass123'
         )
@@ -400,6 +405,7 @@ class CartModelTest(TestCase):
 class CartItemModelTest(TestCase):
     def setUp(self):
         self.user = User.objects.create_user(
+            username='testuser',
             email='test@example.com',
             password='testpass123'
         )

@@ -465,6 +465,7 @@ class EnvironmentalMetricModelTest(TestCase):
 class ReviewModelTest(TestCase):
     def setUp(self):
         self.user = User.objects.create_user(
+            username='reviewer',
             email='reviewer@example.com',
             password='testpass123'
         )
@@ -540,6 +541,7 @@ class ReviewModelTest(TestCase):
 
     def test_multiple_users_can_review_same_product(self):
         user2 = User.objects.create_user(
+            username='reviewer2',
             email='reviewer2@example.com',
             password='testpass123'
         )

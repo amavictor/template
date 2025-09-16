@@ -165,6 +165,197 @@ class Subscription(models.Model):
         ]
 
 
+class APITokenPackage(models.Model):
+    """API Token subscription packages with different durations."""
+    
+    DURATION_CHOICES = (
+        ('week', '1 Week'),
+        ('month', '1 Month'),
+        ('year', '1 Year'),
+    )
+    
+    name = models.CharField(max_length=100)
+    duration = models.CharField(max_length=20, choices=DURATION_CHOICES)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    description = models.TextField(blank=True)
+    
+    # Features
+    api_calls_per_month = models.IntegerField(default=1000)
+    concurrent_connections = models.IntegerField(default=1)
+    includes_real_time_data = models.BooleanField(default=True)
+    includes_historical_data = models.BooleanField(default=False)
+    includes_analytics = models.BooleanField(default=False)
+    
+    # Display
+    is_featured = models.BooleanField(default=False)
+    sort_order = models.IntegerField(default=0)
+    is_active = models.BooleanField(default=True)
+    
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    def __str__(self):
+        return f'{self.name} - {self.get_duration_display()}'
+    
+    def get_duration_days(self):
+        """Get duration in days."""
+        duration_map = {
+            'week': 7,
+            'month': 30,
+            'year': 365,
+        }
+        return duration_map.get(self.duration, 30)
+    
+    class Meta:
+        db_table = 'subscriptions_apitokenpackage'
+        verbose_name = _('API Token Package')
+        verbose_name_plural = _('API Token Packages')
+        ordering = ['sort_order', 'price']
+
+
+class UserAPIToken(models.Model):
+    """User's purchased API tokens with expiration."""
+    
+    STATUS_CHOICES = (
+        ('active', 'Active'),
+        ('expired', 'Expired'),
+        ('cancelled', 'Cancelled'),
+    )
+    
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name='subscription_api_tokens'
+    )
+    token_key = models.CharField(
+        max_length=1000,
+        unique=True,
+        help_text='JWT token for API access'
+    )
+    package = models.ForeignKey(APITokenPackage, on_delete=models.CASCADE)
+    
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='active')
+    
+    # Subscription details
+    purchased_at = models.DateTimeField(auto_now_add=True)
+    expires_at = models.DateTimeField()
+    
+    # Usage tracking
+    api_calls_used = models.IntegerField(default=0)
+    last_used_at = models.DateTimeField(blank=True, null=True)
+    
+    # Payment
+    order_item = models.ForeignKey(
+        OrderItem,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='api_tokens'
+    )
+    
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    def __str__(self):
+        return f'{self.user.email} - {self.package.name} - {self.status}'
+    
+    def is_valid(self):
+        """Check if token is still valid."""
+        from django.utils import timezone
+        return (
+            self.status == 'active' and 
+            timezone.now() <= self.expires_at
+        )
+    
+    def days_remaining(self):
+        """Get days until expiration."""
+        if not self.is_valid():
+            return 0
+        from django.utils import timezone
+        delta = self.expires_at - timezone.now()
+        return max(0, delta.days)
+    
+    def get_remaining_api_calls(self):
+        """Get remaining API calls for this month."""
+        return max(0, self.package.api_calls_per_month - self.api_calls_used)
+    
+    def increment_usage(self):
+        """Increment API usage counter."""
+        from django.utils import timezone
+        self.api_calls_used += 1
+        self.last_used_at = timezone.now()
+        self.save(update_fields=['api_calls_used', 'last_used_at'])
+    
+    def reset_monthly_usage(self):
+        """Reset monthly usage (called by cron job)."""
+        self.api_calls_used = 0
+        self.save(update_fields=['api_calls_used'])
+    
+    @property
+    def token(self):
+        """Property to access token_key for backward compatibility."""
+        class TokenWrapper:
+            def __init__(self, key):
+                self.key = key
+        return TokenWrapper(self.token_key)
+    
+    def verify_token(self):
+        """Verify if the JWT token is still valid."""
+        try:
+            from rest_framework_simplejwt.tokens import UntypedToken
+            from rest_framework_simplejwt.exceptions import InvalidToken, TokenError
+            
+            UntypedToken(self.token_key)
+            return True
+        except (InvalidToken, TokenError):
+            return False
+    
+    @classmethod
+    def create_from_package(cls, user, package, order_item=None):
+        """Create a new API token from package."""
+        from django.utils import timezone
+        from datetime import timedelta
+        from rest_framework_simplejwt.tokens import AccessToken
+        import uuid
+        
+        # Calculate expiration date
+        expires_at = timezone.now() + timedelta(days=package.get_duration_days())
+        
+        # Generate JWT token with custom claims
+        token = AccessToken.for_user(user)
+        
+        # Add custom claims for API subscription
+        token['subscription_id'] = str(uuid.uuid4())
+        token['package_id'] = package.id
+        token['package_name'] = package.name
+        token['api_calls_limit'] = package.api_calls_per_month
+        token['expires_at'] = expires_at.isoformat()
+        
+        # Set token expiration to match package duration
+        token.set_exp(lifetime=timedelta(days=package.get_duration_days()))
+        
+        # Create UserAPIToken
+        user_token = cls.objects.create(
+            user=user,
+            token_key=str(token),
+            package=package,
+            expires_at=expires_at,
+            order_item=order_item
+        )
+        
+        return user_token
+    
+    class Meta:
+        db_table = 'subscriptions_userapitoken'
+        verbose_name = _('User API Token')
+        verbose_name_plural = _('User API Tokens')
+        ordering = ['-created_at']
+        indexes = [
+            models.Index(fields=['user', 'status']),
+            models.Index(fields=['expires_at']),
+        ]
+
+
 class SubscriptionStatusHistory(models.Model):
     """Track status changes for subscriptions."""
     

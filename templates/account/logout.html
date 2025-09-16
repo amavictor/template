@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}Sign Out - TechMart{% endblock %}
+{% block title %}Sign Out - BlueWave{% endblock %}
 
 {% block extra_css %}
 <style>
@@ -35,7 +35,7 @@
                 </div>
                 
                 <h3 class="mb-3">Sign Out</h3>
-                <p class="text-muted mb-4">Are you sure you want to sign out of your TechMart account?</p>
+                <p class="text-muted mb-4">Are you sure you want to sign out of your BlueWave account?</p>
                 
                 <form method="post" action="{% url 'account_logout' %}">
                     {% csrf_token %}
@@ -57,7 +57,7 @@
         
         <div class="text-center mt-4">
             <p class="text-muted small">
-                Thanks for using TechMart! We'll see you next time.
+                Thanks for using BlueWave! We'll see you next time.
             </p>
         </div>
     </div>

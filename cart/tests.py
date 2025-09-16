@@ -11,6 +11,7 @@ User = get_user_model()
 class CartModelTest(TestCase):
     def setUp(self):
         self.user = User.objects.create_user(
+            username='testuser',
             email='test@example.com',
             password='testpass123'
         )
@@ -83,6 +84,7 @@ class CartModelTest(TestCase):
 class CartItemModelTest(TestCase):
     def setUp(self):
         self.user = User.objects.create_user(
+            username='testuser',
             email='test@example.com',
             password='testpass123'
         )
@@ -199,6 +201,7 @@ class CartItemModelTest(TestCase):
 class WishlistModelTest(TestCase):
     def setUp(self):
         self.user = User.objects.create_user(
+            username='testuser',
             email='test@example.com',
             password='testpass123'
         )
@@ -259,6 +262,7 @@ class WishlistModelTest(TestCase):
 class WishlistItemModelTest(TestCase):
     def setUp(self):
         self.user = User.objects.create_user(
+            username='testuser',
             email='test@example.com',
             password='testpass123'
         )
@@ -391,6 +395,7 @@ class SessionCartModelTest(TestCase):
 
     def test_merge_with_user_cart_new_cart(self):
         user = User.objects.create_user(
+            username='testuser_session',
             email='test@example.com',
             password='testpass123'
         )
@@ -421,6 +426,7 @@ class SessionCartModelTest(TestCase):
 
     def test_merge_with_existing_user_cart(self):
         user = User.objects.create_user(
+            username='testuser_session',
             email='test@example.com',
             password='testpass123'
         )

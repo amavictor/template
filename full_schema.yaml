@@ -1,8 +1,8 @@
 openapi: 3.0.3
 info:
-  title: TechMart API
+  title: BlueWave API
   version: 1.0.0
-  description: API for TechMart eCommerce platform - access products, manage cart,
+  description: API for BlueWave eCommerce platform - access products, manage cart,
     and process orders
 paths:
   /api/cart/:

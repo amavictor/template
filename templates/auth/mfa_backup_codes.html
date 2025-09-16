@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Backup Codes - TechMart{% endblock %}
+{% block title %}Backup Codes - BlueWave{% endblock %}
 
 {% block content %}
 <div class="container py-5">
@@ -129,7 +129,7 @@
 // Copy all backup codes to clipboard
 function copyAllCodes() {
     const codes = document.querySelectorAll('.backup-code');
-    let allCodes = 'TechMart Backup Codes:\n\n';
+    let allCodes = 'BlueWave Backup Codes:\n\n';
     
     codes.forEach(code => {
         allCodes += code.textContent + '\n';
@@ -161,7 +161,7 @@ function printCodes() {
     let printContent = `
         <html>
         <head>
-            <title>TechMart Backup Codes</title>
+            <title>BlueWave Backup Codes</title>
             <style>
                 body { font-family: Arial, sans-serif; margin: 20px; }
                 .header { text-align: center; margin-bottom: 30px; }
@@ -173,7 +173,7 @@ function printCodes() {
         </head>
         <body>
             <div class="header">
-                <h1>TechMart Backup Codes</h1>
+                <h1>BlueWave Backup Codes</h1>
                 <p>Account: {{ user.email }}</p>
                 <p>Generated: ${new Date().toLocaleString()}</p>
             </div>
@@ -208,7 +208,7 @@ function printCodes() {
 // Download backup codes as text file
 function downloadCodes() {
     const codes = document.querySelectorAll('.backup-code');
-    let content = 'TechMart Backup Codes\n';
+    let content = 'BlueWave Backup Codes\n';
     content += '====================\n\n';
     content += 'Account: {{ user.email }}\n';
     content += 'Generated: ' + new Date().toLocaleString() + '\n\n';
@@ -228,7 +228,7 @@ function downloadCodes() {
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = 'techmart-backup-codes.txt';
+    a.download = 'BlueWave-backup-codes.txt';
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
